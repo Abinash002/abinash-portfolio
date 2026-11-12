@@ -1,0 +1,96 @@
+/* =========================================
+   FRAMER STYLE IMAGE REVEAL ANIMATION
+   - Staggered 20 horizontal strips
+   - Collapses from top to bottom
+   - Cubic-bezier (0.16, 1, 0.3, 1) Framer easing
+   - GPU-accelerated with will-change: transform
+   - Light & dark mode harmonious
+========================================= */
+
+:root {
+  --reveal-strip-bg: rgb(192, 237, 255);
+}
+
+.active-dark-mode {
+  --reveal-strip-bg: #222B45;
+}
+
+/* =========================================
+   IMAGE WRAPPER
+========================================= */
+.banner__img.image-wrapper,
+.image-wrapper {
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 20px;
+}
+
+/* Ensure the image displays smoothly inside the wrapper */
+.banner__img.image-wrapper img {
+  user-select: none;
+  -webkit-user-drag: none;
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================================
+   OVERLAY CONTAINER
+========================================= */
+.reveal-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  z-index: 5;
+  pointer-events: none;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+/* =========================================
+   ANIMATION STRIPS (20 Horizontal Lines)
+========================================= */
+.reveal-strip {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  background: var(--reveal-strip-bg, rgb(192, 237, 255));
+
+  /* Initial state: overlay is completely visible */
+  transform: scaleY(1);
+
+  /* Framer collapse direction: center top */
+  transform-origin: center top;
+
+  /* Framer-style easing */
+  transition-property: transform;
+  transition-duration: 700ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* GPU acceleration */
+  will-change: transform;
+
+  /* Avoid tiny subpixel gaps between strips */
+  margin-bottom: -1px;
+}
+
+/* =========================================
+   ANIMATION TRIGGERED
+========================================= */
+.image-wrapper.animate .reveal-strip,
+.banner__img.animate .reveal-strip {
+  /* Overlay collapses vertically, revealing the image underneath */
+  transform: scaleY(0);
+}
+
+/* =========================================
+   ACCESSIBILITY: REDUCED MOTION
+========================================= */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-strip {
+    transition: none !important;
+    transform: scaleY(0) !important;
+  }
+}

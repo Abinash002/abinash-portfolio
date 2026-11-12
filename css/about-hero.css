@@ -1,0 +1,533 @@
+/*=============================================================
+  ABOUT SECTION: MINIMAL EDITORIAL HERO
+  UI/UX Design Process Diagram with Layered Geometric Shapes,
+  Central Concentric Target, Dashed Connectors, Nine Process Pills,
+  and Slow Circular Orbital Motion.
+=============================================================*/
+
+:root {
+  --about-bg-warm: #FAF8F5;
+  --about-heading-navy: #0B1B32;
+  --about-body-muted: #4B6079;
+  --about-orange: #FF6B00;
+  --about-blue-accent: #0062FF;
+  --about-coral-red: #FA383E;
+  --about-violet: #6655EE;
+  --about-raspberry: #B82A52;
+  --about-pill-muted: #8598AF;
+  --about-line-connector: #BAC8D9;
+}
+
+/* -------------------------------------------------------------
+   1. Hero Section Layout
+------------------------------------------------------------- */
+.about-hero {
+  position: relative;
+  background-color: var(--about-bg-warm);
+  padding-top: 175px;
+  padding-bottom: 125px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.about-hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* -------------------------------------------------------------
+   2. Left Column: Editorial Typography
+------------------------------------------------------------- */
+.about-hero__content {
+  max-width: 540px;
+  padding-right: 20px;
+}
+
+/* Label: GET TO KNOW */
+.about-hero__label-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: aboutFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+}
+
+.about-hero__label-line {
+  display: inline-block;
+  width: 32px;
+  height: 2px;
+  background-color: var(--about-orange);
+  border-radius: 1px;
+}
+
+.about-hero__label {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--about-orange);
+  line-height: 1;
+}
+
+/* Main Heading: About Me */
+.about-hero__heading {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-size: 92px;
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: var(--about-heading-navy);
+  margin-top: 0;
+  margin-bottom: 26px;
+  opacity: 0;
+  animation: aboutFadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.22s forwards;
+}
+
+/* Supporting Paragraph */
+.about-hero__intro {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.68;
+  color: var(--about-body-muted);
+  max-width: 480px;
+  margin: 0;
+  opacity: 0;
+  animation: aboutFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+}
+
+/* -------------------------------------------------------------
+   3. Right Column: UI/UX Design Process Diagram
+------------------------------------------------------------- */
+.about-hero__visual {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  height: 540px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: aboutVisualIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+.about-hero__svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+/* -------------------------------------------------------------
+   4. Layered Geometric Shapes: Slow Circular Centered Rotation
+------------------------------------------------------------- */
+.layer-rot-1 {
+  animation: rotLayer1 52s linear infinite;
+  transform-origin: 310px 270px;
+}
+
+.layer-rot-2 {
+  animation: rotLayer2 44s linear infinite;
+  transform-origin: 310px 270px;
+}
+
+.layer-rot-3 {
+  animation: rotLayer3 48s linear infinite;
+  transform-origin: 310px 270px;
+}
+
+.layer-rot-4 {
+  animation: rotLayer4 38s linear infinite;
+  transform-origin: 310px 270px;
+}
+
+.layer-rot-5 {
+  animation: rotLayer5 58s linear infinite;
+  transform-origin: 310px 270px;
+}
+
+@keyframes rotLayer1 {
+  from {
+    transform: rotate(45deg);
+  }
+  to {
+    transform: rotate(405deg);
+  }
+}
+
+@keyframes rotLayer2 {
+  from {
+    transform: rotate(20deg);
+  }
+  to {
+    transform: rotate(-340deg);
+  }
+}
+
+@keyframes rotLayer3 {
+  from {
+    transform: rotate(5deg);
+  }
+  to {
+    transform: rotate(365deg);
+  }
+}
+
+@keyframes rotLayer4 {
+  from {
+    transform: rotate(-15deg);
+  }
+  to {
+    transform: rotate(-375deg);
+  }
+}
+
+@keyframes rotLayer5 {
+  from {
+    transform: rotate(32deg);
+  }
+  to {
+    transform: rotate(392deg);
+  }
+}
+
+/* -------------------------------------------------------------
+   5. Circular Orbit & Traveling Blue Node
+------------------------------------------------------------- */
+.orbit-path-line {
+  stroke: var(--about-line-connector);
+  stroke-width: 1.2;
+  stroke-dasharray: 3.5 5.5;
+  fill: none;
+}
+
+.orbit-runner {
+  animation: orbitTravel 26s linear infinite;
+  transform-origin: 310px 270px;
+}
+
+@keyframes orbitTravel {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* -------------------------------------------------------------
+   6. Connector Paths & Nodes
+------------------------------------------------------------- */
+.connector-line {
+  stroke: var(--about-line-connector);
+  stroke-width: 1.2;
+  stroke-dasharray: 3 4;
+  fill: none;
+  stroke-linecap: round;
+}
+
+/* Micro-animations for connector nodes */
+.node-pulse-coral {
+  animation: nodePulseCoral 4s ease-in-out infinite;
+  transform-origin: 196px 225px;
+}
+
+.node-pulse-orange {
+  animation: nodePulseOrange 4.5s ease-in-out infinite 1s;
+  transform-origin: 458px 270px;
+}
+
+.node-pulse-violet {
+  animation: nodePulseViolet 4.8s ease-in-out infinite 2s;
+  transform-origin: 259px 402px;
+}
+
+.node-pulse-berry {
+  animation: nodePulseBerry 4.2s ease-in-out infinite 1.5s;
+  transform-origin: 397px 378px;
+}
+
+.node-pulse-blue {
+  animation: nodePulseBlue 3.8s ease-in-out infinite 0.5s;
+  transform-origin: 310px 170px;
+}
+
+@keyframes nodePulseCoral {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+}
+
+@keyframes nodePulseOrange {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+}
+
+@keyframes nodePulseViolet {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+}
+
+@keyframes nodePulseBerry {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+}
+
+@keyframes nodePulseBlue {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+}
+
+/* -------------------------------------------------------------
+   7. Process Pill Badges & Subtle Drift
+------------------------------------------------------------- */
+.diagram-pill {
+  cursor: default;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.diagram-pill:hover {
+  filter: brightness(1.06);
+}
+
+.diagram-pill text {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  fill: #FFFFFF;
+  text-anchor: middle;
+  dominant-baseline: central;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Staggered non-rotating positional drift */
+.pill-drift-1 {
+  animation: pillFloat1 6.5s ease-in-out infinite;
+}
+
+.pill-drift-2 {
+  animation: pillFloat2 7.8s ease-in-out infinite 0.7s;
+}
+
+.pill-drift-3 {
+  animation: pillFloat3 8.2s ease-in-out infinite 1.4s;
+}
+
+.pill-drift-4 {
+  animation: pillFloat1 7.2s ease-in-out infinite 2.1s;
+}
+
+@keyframes pillFloat1 {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3.5px);
+  }
+}
+
+@keyframes pillFloat2 {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(2px, -2.5px);
+  }
+}
+
+@keyframes pillFloat3 {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-2px, 2px);
+  }
+}
+
+/* -------------------------------------------------------------
+   8. Entrance Animations
+------------------------------------------------------------- */
+@keyframes aboutFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes aboutVisualIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* -------------------------------------------------------------
+   9. Seamless Tabs Integration (on about.html)
+------------------------------------------------------------- */
+.about-details {
+  background-color: var(--about-bg-warm);
+  padding-bottom: 120px;
+  position: relative;
+}
+
+.about-details .about__info__wrap {
+  margin-top: 20px;
+}
+
+/* -------------------------------------------------------------
+   10. Responsive Adaptations
+------------------------------------------------------------- */
+@media (max-width: 1400px) {
+  .about-hero__heading {
+    font-size: 84px;
+  }
+  .about-hero__visual {
+    max-width: 560px;
+    height: 500px;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .about-hero {
+    padding-top: 150px;
+    padding-bottom: 95px;
+  }
+  .about-hero__heading {
+    font-size: 72px;
+    margin-bottom: 22px;
+  }
+  .about-hero__intro {
+    font-size: 18px;
+    max-width: 440px;
+  }
+  .about-hero__visual {
+    max-width: 500px;
+    height: 450px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .about-hero {
+    padding-top: 135px;
+    padding-bottom: 70px;
+  }
+  .about-hero__content {
+    max-width: 100%;
+    padding-right: 0;
+    text-align: left;
+    margin-bottom: 45px;
+  }
+  .about-hero__heading {
+    font-size: 60px;
+  }
+  .about-hero__visual {
+    max-width: 480px;
+    height: 430px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .about-hero {
+    padding-top: 120px;
+    padding-bottom: 60px;
+  }
+  .about-hero__label-wrap {
+    margin-bottom: 18px;
+  }
+  .about-hero__heading {
+    font-size: 46px;
+    margin-bottom: 18px;
+  }
+  .about-hero__intro {
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  .about-hero__visual {
+    max-width: 380px;
+    height: 340px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-hero__heading {
+    font-size: 38px;
+  }
+  .about-hero__intro {
+    font-size: 16px;
+  }
+  .about-hero__visual {
+    max-width: 320px;
+    height: 290px;
+  }
+}
+
+/* -------------------------------------------------------------
+   11. Accessibility: Prefers Reduced Motion
+------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .about-hero__label-wrap,
+  .about-hero__heading,
+  .about-hero__intro,
+  .about-hero__visual,
+  .layer-rot-1,
+  .layer-rot-2,
+  .layer-rot-3,
+  .layer-rot-4,
+  .layer-rot-5,
+  .orbit-runner,
+  .pill-drift-1,
+  .pill-drift-2,
+  .pill-drift-3,
+  .pill-drift-4,
+  .node-pulse-coral,
+  .node-pulse-orange,
+  .node-pulse-violet,
+  .node-pulse-berry,
+  .node-pulse-blue {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

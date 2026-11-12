@@ -1,0 +1,207 @@
+/* ==========================================================================
+   THEME SWITCHER TOGGLE COMPONENT
+   - Tactile, accessible light / dark mode toggle button
+   - Seamlessly integrated into Desktop Navbar, Mobile Header & Mobile Menu Drawer
+   - Matches warm off-white (#F7F5F1) in Light Mode & deep navy (#0B1220) in Dark Mode
+   ========================================================================== */
+
+.theme-switcher-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  vertical-align: middle;
+}
+
+.theme-switcher-btn:hover {
+  transform: scale(1.05);
+}
+
+.theme-switcher-btn:active {
+  transform: scale(0.96);
+}
+
+.theme-switcher-btn:focus-visible {
+  outline: 2px solid #3B82F6;
+  outline-offset: 3px;
+  border-radius: 999px;
+}
+
+/* Track Pill */
+.theme-switcher-track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 66px;
+  height: 34px;
+  padding: 0 7px;
+  border-radius: 999px;
+  box-sizing: border-box;
+  background: #EAE6DF;
+  border: 1px solid rgba(11, 31, 58, 0.14);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(255, 255, 255, 0.8);
+  transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Sliding Thumb */
+.theme-switcher-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18), 0 1px 2px rgba(0, 0, 0, 0.12);
+  transition: transform 0.35s cubic-bezier(0.34, 1.4, 0.64, 1), background-color 0.35s ease, box-shadow 0.35s ease;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Icons */
+.theme-switcher-icon {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease;
+}
+
+/* Light Mode active icon colors */
+.theme-switcher-icon.icon-sun {
+  color: #FF7014;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.theme-switcher-icon.icon-moon {
+  color: #8C98A9;
+  opacity: 0.65;
+  transform: scale(0.9);
+}
+
+/* -------------------------------------------------------------
+   DARK MODE STATE
+   Activated when body has .dark-theme or .active-dark-mode
+   or when .theme-switcher-btn has .is-dark
+   ------------------------------------------------------------- */
+body.dark-theme .theme-switcher-track,
+body.active-dark-mode .theme-switcher-track,
+.theme-switcher-btn.is-dark .theme-switcher-track {
+  background: #131F32;
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.4), 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-theme .theme-switcher-thumb,
+body.active-dark-mode .theme-switcher-thumb,
+.theme-switcher-btn.is-dark .theme-switcher-thumb {
+  transform: translateX(32px);
+  background: #3B82F6;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+body.dark-theme .theme-switcher-icon.icon-sun,
+body.active-dark-mode .theme-switcher-icon.icon-sun,
+.theme-switcher-btn.is-dark .theme-switcher-icon.icon-sun {
+  color: #55657E;
+  opacity: 0.6;
+  transform: scale(0.9);
+}
+
+body.dark-theme .theme-switcher-icon.icon-moon,
+body.active-dark-mode .theme-switcher-icon.icon-moon,
+.theme-switcher-btn.is-dark .theme-switcher-icon.icon-moon {
+  color: #FFFFFF;
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* -------------------------------------------------------------
+   NAVBAR INTEGRATION STYLES
+   ------------------------------------------------------------- */
+.header__action-wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: 20px;
+}
+
+/* Mobile header quick switch button */
+.mobile-header-switcher {
+  display: none;
+  align-items: center;
+  margin-right: 12px;
+  margin-top: 6px;
+  float: right;
+}
+
+@media (max-width: 1199.98px) {
+  .mobile-header-switcher {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .mobile-header-switcher {
+    margin-top: 1px;
+  }
+  .theme-switcher-track {
+    width: 60px;
+    height: 30px;
+    padding: 0 6px;
+  }
+  .theme-switcher-thumb {
+    width: 22px;
+    height: 22px;
+    top: 3px;
+    left: 3px;
+  }
+  body.dark-theme .theme-switcher-thumb,
+  body.active-dark-mode .theme-switcher-thumb,
+  .theme-switcher-btn.is-dark .theme-switcher-thumb {
+    transform: translateX(28px);
+  }
+}
+
+/* Mobile Menu Drawer Switcher Card */
+.mobile-drawer-theme {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  margin: 24px 20px 10px 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+}
+
+body:not(.dark-theme):not(.active-dark-mode) .mobile-drawer-theme {
+  background: rgba(11, 31, 58, 0.04);
+  border: 1px solid rgba(11, 31, 58, 0.08);
+}
+
+.mobile-drawer-theme .drawer-theme-label {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+

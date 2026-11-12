@@ -1,0 +1,685 @@
+/*=============================================================
+  ABOUT SECTION: CONCENTRIC ORBITAL TOOLS ANIMATION
+=============================================================*/
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600&display=swap');
+
+.about {
+  position: relative;
+  padding: 130px 0 110px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.about::before {
+  display: none !important;
+}
+
+/* Orbit Main Container */
+.about__orbit-wrapper {
+  position: relative;
+  width: 560px;
+  height: 560px;
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ambient soft lighting glows */
+.about__orbit-glow-1 {
+  position: absolute;
+  top: -40px;
+  left: -40px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(210, 230, 255, 0.5) 0%, rgba(255, 255, 255, 0) 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.about__orbit-glow-2 {
+  position: absolute;
+  bottom: -30px;
+  right: 20px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(225, 235, 255, 0.45) 0%, rgba(255, 255, 255, 0) 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Decorative dot grid at bottom left */
+.about__orbit-dot-grid {
+  position: absolute;
+  bottom: 8px;
+  left: -15px;
+  width: 80px;
+  height: 96px;
+  background-image: radial-gradient(#d3dfec 1.8px, transparent 1.8px);
+  background-size: 16px 16px;
+  opacity: 0.85;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* SVG Track & Particle System */
+.about__orbit-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Fixed Center Hub Card (Stable, non-rotating) */
+.about__orbit-hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 216px;
+  height: 216px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #edf4fd 0%, #e3effc 65%, #d8e6f8 100%);
+  border: 1.5px solid rgba(212, 228, 250, 0.95);
+  box-shadow: 0 10px 30px rgba(0, 86, 251, 0.05), inset 0 2px 10px rgba(255, 255, 255, 0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 10;
+  user-select: none;
+  pointer-events: auto;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.about__orbit-hub:hover {
+  transform: translate(-50%, -50%) scale(1.03);
+  box-shadow: 0 14px 36px rgba(0, 86, 251, 0.09), inset 0 2px 12px rgba(255, 255, 255, 1);
+}
+
+.orbit-hub-script {
+  font-family: 'Caveat', 'Dancing Script', cursive;
+  font-size: 38px;
+  font-weight: 600;
+  color: #0056fb;
+  line-height: 1;
+  margin-bottom: 2px;
+  transform: rotate(-3deg);
+  display: inline-block;
+  letter-spacing: 0.5px;
+}
+
+.orbit-hub-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 24px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.orbit-hub-line {
+  width: 42px;
+  height: 2px;
+  background: #0056fb;
+  border-radius: 2px;
+  margin-top: 10px;
+  display: block;
+}
+
+/* =============================================================
+   CONCENTRIC ORBIT RINGS & CONTINUOUS ROTATION ANIMATIONS
+   ============================================================= */
+
+/* Outer Orbit Ring: R = 240px, Diameter = 480px, 42s rotation */
+.orbit-ring--outer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(212, 226, 244, 0.85);
+  transform: translate(-50%, -50%);
+  animation: orbitSpinOuter 42s linear infinite;
+  z-index: 2;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* Inner Orbit Ring: R = 160px, Diameter = 320px, 28s rotation */
+.orbit-ring--inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(220, 233, 248, 0.9);
+  transform: translate(-50%, -50%);
+  animation: orbitSpinInner 28s linear infinite;
+  z-index: 3;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* Keyframes: Continuous Smooth Orbit Rotation */
+@keyframes orbitSpinOuter {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes orbitSpinInner {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Keyframes: Counter-Rotation (Guarantees icons remain 100% upright at all angles) */
+@keyframes orbitCounterSpinOuter {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes orbitCounterSpinInner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+/* Counter-Rotating Rotator Wrappers */
+.orbit-rotator--outer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: orbitCounterSpinOuter 42s linear infinite;
+  will-change: transform;
+}
+
+.orbit-rotator--inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: orbitCounterSpinInner 28s linear infinite;
+  will-change: transform;
+}
+
+/* Interactive Hover Pause: Gracefully pause orbits when hovering to click or inspect */
+.orbit-ring--outer:hover,
+.orbit-ring--outer:hover .orbit-rotator--outer,
+.orbit-ring--inner:hover,
+.orbit-ring--inner:hover .orbit-rotator--inner,
+.about__orbit-wrapper:has(.orbit-tool-badge:hover) .orbit-ring--outer,
+.about__orbit-wrapper:has(.orbit-tool-badge:hover) .orbit-ring--inner,
+.about__orbit-wrapper:has(.orbit-tool-badge:hover) .orbit-rotator--outer,
+.about__orbit-wrapper:has(.orbit-tool-badge:hover) .orbit-rotator--inner {
+  animation-play-state: paused !important;
+}
+
+/* Static Slot Positions along the Rings */
+.orbit-slot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+}
+
+/* Outer Ring Slots (90° distribution) */
+.orbit-slot--outer-top {
+  top: 0;
+  left: 50%;
+}
+.orbit-slot--outer-right {
+  top: 50%;
+  left: 100%;
+}
+.orbit-slot--outer-bottom {
+  top: 100%;
+  left: 50%;
+}
+.orbit-slot--outer-left {
+  top: 50%;
+  left: 0;
+}
+
+/* Inner Ring Slots (Offset 45° distribution) */
+.orbit-slot--inner-tr {
+  top: 14.65%;
+  left: 85.35%;
+}
+.orbit-slot--inner-br {
+  top: 85.35%;
+  left: 85.35%;
+}
+.orbit-slot--inner-bl {
+  top: 85.35%;
+  left: 14.65%;
+}
+.orbit-slot--inner-tl {
+  top: 14.65%;
+  left: 14.65%;
+}
+
+/* =============================================================
+   TOOL BADGES STYLING & HALO GLOWS
+   ============================================================= */
+.orbit-tool-badge {
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+}
+
+.orbit-tool-badge:hover {
+  transform: scale(1.18);
+  z-index: 20;
+}
+
+/* Outer Badges Dimensions */
+.orbit-ring--outer .orbit-tool-badge {
+  width: 72px;
+  height: 72px;
+}
+
+/* Inner Badges Dimensions */
+.orbit-ring--inner .orbit-tool-badge {
+  width: 66px;
+  height: 66px;
+}
+
+.orbit-tool-badge img {
+  max-width: 44px;
+  max-height: 44px;
+  object-fit: contain;
+  pointer-events: none;
+  transition: transform 0.3s ease;
+}
+
+/* 1. Figma (Outer Top) */
+.orbit-tool--figma {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05), 0 0 32px rgba(0, 180, 255, 0.35), 0 0 48px rgba(255, 114, 98, 0.3);
+}
+.orbit-tool--figma:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08), 0 0 45px rgba(0, 180, 255, 0.5), 0 0 65px rgba(255, 114, 98, 0.45);
+}
+.orbit-tool--figma img {
+  max-width: 48px;
+  max-height: 48px;
+}
+
+/* 2. Sketch (Outer Right) */
+.orbit-tool--sketch {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05), 0 0 35px rgba(255, 165, 0, 0.45);
+}
+.orbit-tool--sketch:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08), 0 0 50px rgba(255, 165, 0, 0.65);
+}
+.orbit-tool--sketch img {
+  max-width: 48px;
+  max-height: 48px;
+}
+
+/* 3. Premiere Pro (Outer Bottom) */
+.orbit-tool--premier {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05), 0 0 38px rgba(185, 80, 255, 0.55);
+}
+.orbit-tool--premier:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08), 0 0 55px rgba(185, 80, 255, 0.75);
+}
+.orbit-tool--premier img {
+  max-width: 48px;
+  max-height: 48px;
+  border-radius: 12px;
+}
+
+/* 4. Adobe XD (Outer Left) */
+.orbit-tool--xd {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05), 0 0 32px rgba(255, 45, 130, 0.45);
+}
+.orbit-tool--xd:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08), 0 0 48px rgba(255, 45, 130, 0.65);
+}
+.orbit-tool--xd img {
+  max-width: 48px;
+  max-height: 48px;
+  border-radius: 12px;
+}
+
+/* 5. Canva (Inner Top-Right) */
+.orbit-tool--canva {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05), 0 0 35px rgba(255, 45, 160, 0.5), 0 0 50px rgba(0, 196, 204, 0.25);
+}
+.orbit-tool--canva:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08), 0 0 50px rgba(255, 45, 160, 0.7);
+}
+.orbit-tool--canva img {
+  max-width: 44px;
+  max-height: 44px;
+}
+
+/* 6. Framer (Inner Bottom-Right) */
+.orbit-tool--framer {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05), 0 0 32px rgba(0, 150, 255, 0.4);
+}
+.orbit-tool--framer:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08), 0 0 48px rgba(0, 150, 255, 0.6);
+}
+.orbit-tool--framer img {
+  max-width: 42px;
+  max-height: 42px;
+}
+
+/* 7. Photoshop (Inner Bottom-Left) */
+.orbit-tool--photoshop {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05), 0 0 35px rgba(0, 140, 255, 0.55);
+}
+.orbit-tool--photoshop:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08), 0 0 50px rgba(0, 140, 255, 0.75);
+}
+.orbit-tool--photoshop img {
+  max-width: 44px;
+  max-height: 44px;
+  border-radius: 10px;
+}
+
+/* 8. Illustrator (Inner Top-Left) */
+.orbit-tool--illustrator {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05), 0 0 35px rgba(255, 130, 0, 0.5);
+}
+.orbit-tool--illustrator:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08), 0 0 50px rgba(255, 130, 0, 0.7);
+}
+.orbit-tool--illustrator img {
+  max-width: 44px;
+  max-height: 44px;
+  border-radius: 10px;
+}
+
+/* =============================================================
+   RIGHT COLUMN CONTENT & ACTIONS
+   ============================================================= */
+.about__new-content {
+  padding-left: 30px;
+}
+@media (max-width: 991.98px) {
+  .about__new-content {
+    padding-left: 0;
+    margin-top: 50px;
+  }
+}
+
+.about__header-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.about__badge-text {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #FCAF17;
+  text-transform: uppercase;
+}
+
+.about__badge-divider {
+  width: 44px;
+  height: 2px;
+  background: linear-gradient(90deg, #FCAF17 0%, rgba(252, 175, 23, 0.25) 100%);
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.about__headline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.18;
+  color: #0f172a;
+  letter-spacing: -0.015em;
+  margin-bottom: 24px;
+}
+
+.about__headline .about__dot {
+  color: #FCAF17;
+}
+
+.about__body-copy p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  line-height: 1.72;
+  color: #555e6d;
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+
+.about__body-copy .about__author-name {
+  color: #0056fb;
+  font-weight: 700;
+}
+
+.about__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.about-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 26px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.about-action-btn svg {
+  transition: transform 0.25s ease;
+}
+
+.about-action-btn:hover svg {
+  transform: translate(2px, -2px);
+}
+
+.about-action-btn--primary {
+  background-color: #0056fb;
+  color: #ffffff;
+  border: 1.5px solid #0056fb;
+  box-shadow: 0 4px 14px rgba(0, 86, 251, 0.25);
+}
+
+.about-action-btn--primary:hover {
+  background-color: #0044d4;
+  border-color: #0044d4;
+  color: #ffffff;
+  box-shadow: 0 6px 20px rgba(0, 86, 251, 0.35);
+  transform: translateY(-2px);
+}
+
+.about-action-btn--outline {
+  background-color: #ffffff;
+  color: #0f172a;
+  border: 1.5px solid #d1d9e2;
+}
+
+.about-action-btn--outline:hover {
+  border-color: #0056fb;
+  color: #0056fb;
+  background-color: #f8faff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+/* =============================================================
+   RESPONSIVENESS FOR CONCENTRIC ORBITS
+   ============================================================= */
+@media (max-width: 1199.98px) {
+  .about__orbit-wrapper {
+    width: 480px;
+    height: 480px;
+  }
+  .orbit-ring--outer {
+    width: 410px;
+    height: 410px;
+  }
+  .orbit-ring--inner {
+    width: 275px;
+    height: 275px;
+  }
+  .about__orbit-hub {
+    width: 185px;
+    height: 185px;
+  }
+  .orbit-hub-script {
+    font-size: 32px;
+  }
+  .orbit-hub-title {
+    font-size: 20px;
+  }
+  .orbit-ring--outer .orbit-tool-badge {
+    width: 64px;
+    height: 64px;
+  }
+  .orbit-ring--outer .orbit-tool-badge img {
+    max-width: 40px;
+    max-height: 40px;
+  }
+  .orbit-ring--inner .orbit-tool-badge {
+    width: 58px;
+    height: 58px;
+  }
+  .orbit-ring--inner .orbit-tool-badge img {
+    max-width: 36px;
+    max-height: 36px;
+  }
+  .about__headline {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .about {
+    padding: 80px 0 70px;
+  }
+  .about__orbit-wrapper {
+    width: 360px;
+    height: 360px;
+  }
+  .orbit-ring--outer {
+    width: 310px;
+    height: 310px;
+  }
+  .orbit-ring--inner {
+    width: 210px;
+    height: 210px;
+  }
+  .about__orbit-hub {
+    width: 140px;
+    height: 140px;
+  }
+  .orbit-hub-script {
+    font-size: 26px;
+  }
+  .orbit-hub-title {
+    font-size: 15px;
+  }
+  .orbit-ring--outer .orbit-tool-badge {
+    width: 50px;
+    height: 50px;
+  }
+  .orbit-ring--outer .orbit-tool-badge img {
+    max-width: 30px;
+    max-height: 30px;
+  }
+  .orbit-ring--inner .orbit-tool-badge {
+    width: 44px;
+    height: 44px;
+  }
+  .orbit-ring--inner .orbit-tool-badge img {
+    max-width: 26px;
+    max-height: 26px;
+  }
+  .about__headline {
+    font-size: 30px;
+  }
+  .about__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .about-action-btn {
+    width: 100%;
+  }
+}
+
+/* =============================================================
+   DARK MODE COMPATIBILITY
+   ============================================================= */
+.active-dark-mode .about {
+  background: #151a30;
+}
+.active-dark-mode .about__headline {
+  color: #ffffff;
+}
+.active-dark-mode .about__body-copy p {
+  color: #9099ab;
+}
+.active-dark-mode .about__orbit-hub {
+  background: radial-gradient(circle, #222b45 0%, #1a2236 65%, #151a30 100%);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), inset 0 2px 10px rgba(255, 255, 255, 0.05);
+}
+.active-dark-mode .orbit-hub-title {
+  color: #ffffff;
+}
+.active-dark-mode .orbit-circle-outer,
+.active-dark-mode .orbit-circle-inner,
+.active-dark-mode .orbit-ring--outer,
+.active-dark-mode .orbit-ring--inner {
+  border-color: #2a3553;
+  stroke: #2a3553;
+}
+.active-dark-mode .about-action-btn--outline {
+  background: transparent;
+  color: #ffffff;
+  border-color: #313b58;
+}
+.active-dark-mode .about-action-btn--outline:hover {
+  border-color: #0056fb;
+  color: #0056fb;
+  background: rgba(0, 86, 251, 0.1);
+}

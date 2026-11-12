@@ -1,0 +1,346 @@
+/* ==========================================================================
+   SKILLS & TOOLS SECTION (MY EXPERTISE)
+   - Layout: Two-column desktop layout (Introduction Left, Skills Grid Right)
+   - Right Column Grid: 4 cards in 2x2 grid, 5th card spans full width
+   - Palette: Warm off-white #F7F5F1, Deep Navy #0B1F3A, Orange #FF7014, Muted Blue-Gray #64748B
+   - Clean, rounded white cards with subtle borders & soft hover lift
+   - Crisp vector tool badges for each official tool
+   - 100% responsive for Desktop, Tablet, and Mobile
+   - Dark mode compatible (.active-dark-mode)
+   ========================================================================== */
+
+/* -------------------------------------------------------------
+   1. Section Wrapper
+   ------------------------------------------------------------- */
+.skills-section {
+  position: relative;
+  background-color: #F7F5F1;
+  padding: 120px 0;
+  overflow: hidden;
+  z-index: 10;
+}
+
+/* -------------------------------------------------------------
+   2. Two-Column Layout Container
+   ------------------------------------------------------------- */
+.skills-section__layout {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+/* -------------------------------------------------------------
+   3. Left Column: Introduction
+   ------------------------------------------------------------- */
+.skills-intro {
+  position: sticky;
+  top: 120px;
+}
+
+.skills-intro__eyebrow {
+  display: block;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #FF7014;
+  margin-bottom: 18px;
+  line-height: 1.2;
+}
+
+.skills-intro__heading {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #0B1F3A;
+  margin: 0 0 24px 0;
+}
+
+.skills-intro__dot {
+  color: #FF7014;
+  display: inline;
+}
+
+.skills-intro__desc {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15.5px;
+  font-weight: 400;
+  line-height: 1.68;
+  color: #5A6B7F;
+  margin: 0;
+  max-width: 360px;
+}
+
+/* -------------------------------------------------------------
+   4. Right Column: Skill Cards Grid
+   ------------------------------------------------------------- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+/* -------------------------------------------------------------
+   5. Individual Skill Cards
+   ------------------------------------------------------------- */
+.skills-card {
+  background: #ffffff;
+  border: 1px solid rgba(11, 31, 58, 0.08);
+  border-radius: 20px;
+  padding: 32px 30px;
+  box-shadow: 0 4px 20px rgba(11, 31, 58, 0.03);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
+  position: relative;
+}
+
+.skills-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px rgba(11, 31, 58, 0.08);
+  border-color: rgba(255, 112, 20, 0.3);
+}
+
+/* 5th Card Spans Full Width */
+.skills-card--full {
+  grid-column: 1 / -1;
+}
+
+/* -------------------------------------------------------------
+   6. Tool Badges Row
+   ------------------------------------------------------------- */
+.skills-card__tools {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.skills-tool-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid rgba(11, 31, 58, 0.08);
+  box-shadow: 0 2px 6px rgba(11, 31, 58, 0.04);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s ease;
+  flex-shrink: 0;
+  overflow: hidden;
+  user-select: none;
+}
+
+.skills-tool-badge:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 14px rgba(11, 31, 58, 0.1);
+}
+
+/* Specific Badge Styles */
+.skills-tool-badge--xd {
+  background: #470137;
+  border-color: rgba(255, 97, 246, 0.2);
+}
+
+.skills-tool-badge--js {
+  background: #F7DF1E;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.skills-tool-badge--ps {
+  background: #001E36;
+  border-color: rgba(49, 168, 255, 0.3);
+}
+
+.skills-tool-badge--ai {
+  background: #330000;
+  border-color: rgba(255, 154, 0, 0.3);
+}
+
+.skills-tool-badge--lottie {
+  background: #00DDB3;
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+.skills-tool-badge svg {
+  display: block;
+  max-width: 82%;
+  max-height: 82%;
+}
+
+.skills-tool-badge--xd svg,
+.skills-tool-badge--js svg,
+.skills-tool-badge--ps svg,
+.skills-tool-badge--ai svg,
+.skills-tool-badge--lottie svg {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 11px;
+}
+
+.skills-tool-badge img {
+  display: block;
+  max-width: 32px;
+  max-height: 32px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+/* -------------------------------------------------------------
+   7. Card Typography
+   ------------------------------------------------------------- */
+.skills-card__title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #0B1F3A;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.01em;
+}
+
+.skills-card__desc {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.62;
+  color: #64748B;
+  margin: 0;
+}
+
+/* -------------------------------------------------------------
+   8. Responsive Media Queries
+   ------------------------------------------------------------- */
+@media (max-width: 1199.98px) {
+  .skills-section__layout {
+    grid-template-columns: 320px 1fr;
+    gap: 36px;
+  }
+
+  .skills-intro__heading {
+    font-size: 44px;
+  }
+
+  .skills-card {
+    padding: 26px 24px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .skills-section {
+    padding: 80px 0;
+  }
+
+  .skills-section__layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .skills-intro {
+    position: static;
+    max-width: 600px;
+  }
+
+  .skills-intro__heading {
+    font-size: 40px;
+  }
+
+  .skills-grid {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .skills-section {
+    padding: 60px 0;
+  }
+
+  .skills-intro__heading {
+    font-size: 32px;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .skills-intro__desc {
+    font-size: 14.5px;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .skills-card--full {
+    grid-column: auto;
+  }
+
+  .skills-card {
+    padding: 24px 20px;
+    border-radius: 16px;
+  }
+
+  .skills-card__title {
+    font-size: 18px;
+  }
+
+  .skills-card__desc {
+    font-size: 13.5px;
+  }
+
+  .skills-tool-badge {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+  }
+}
+
+/* -------------------------------------------------------------
+   9. Dark Mode Compatibility (.active-dark-mode)
+   ------------------------------------------------------------- */
+.active-dark-mode .skills-section {
+  background-color: #0b1220;
+}
+
+.active-dark-mode .skills-intro__heading {
+  color: #F8FAFC;
+}
+
+.active-dark-mode .skills-intro__desc {
+  color: #94A3B8;
+}
+
+.active-dark-mode .skills-card {
+  background: #131c2e;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.active-dark-mode .skills-card:hover {
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+  border-color: rgba(255, 112, 20, 0.4);
+}
+
+.active-dark-mode .skills-card__title {
+  color: #F8FAFC;
+}
+
+.active-dark-mode .skills-card__desc {
+  color: #94A3B8;
+}
+
+.active-dark-mode .skills-tool-badge {
+  background: #1e293b;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+

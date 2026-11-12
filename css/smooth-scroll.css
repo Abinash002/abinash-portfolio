@@ -1,0 +1,263 @@
+/* ==========================================================================
+   Smooth & Elegant Scroll System - Production Styles
+   - Natural fluid scrolling offsets for fixed/sticky navbar
+   - Restrained scroll-triggered reveal animations (20-30px, opacity 0->1)
+   - Stagger delays for project cards, skills, and certifications
+   - Polished active navigation state indicator
+   - Full prefers-reduced-motion accessibility compliance
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Smooth Scroll Setup & Sticky Navbar Anchor Offsets
+   -------------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure section headers are never hidden behind fixed/sticky navbar */
+#home,
+#aboutSection,
+#servicesSection,
+#portfolioSection,
+#processSection,
+#contact,
+#thankYouSection,
+#aboutHero,
+.banner,
+.about,
+.services-clean,
+.portfolio,
+.work__process,
+.pcontact-cta-wrapper,
+.thank-you-section,
+.about-hero,
+.about-details {
+  scroll-margin-top: 105px;
+}
+
+@media (max-width: 1199.98px) {
+  #home,
+  #aboutSection,
+  #servicesSection,
+  #portfolioSection,
+  #processSection,
+  #contact,
+  #thankYouSection,
+  #aboutHero,
+  .banner,
+  .about,
+  .services-clean,
+  .portfolio,
+  .work__process,
+  .pcontact-cta-wrapper,
+  .thank-you-section,
+  .about-hero,
+  .about-details {
+    scroll-margin-top: 85px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  #home,
+  #aboutSection,
+  #servicesSection,
+  #portfolioSection,
+  #processSection,
+  #contact,
+  #thankYouSection,
+  #aboutHero,
+  .banner,
+  .about,
+  .services-clean,
+  .portfolio,
+  .work__process,
+  .pcontact-cta-wrapper,
+  .thank-you-section,
+  .about-hero,
+  .about-details {
+    scroll-margin-top: 70px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. Scroll-Triggered Reveal Animations
+   Subtle 20-30px upward movement + gentle opacity transition (0 -> 1)
+   -------------------------------------------------------------------------- */
+.scroll-reveal {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  will-change: auto;
+}
+
+/* Heading specific reveal: slightly more prominent upward glide (26px) */
+.scroll-reveal--heading {
+  opacity: 0;
+  transform: translate3d(0, 26px, 0);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal--heading.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  will-change: auto;
+}
+
+/* Text / Paragraph specific reveal: gentle upward float (18px) */
+.scroll-reveal--text {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal--text.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  will-change: auto;
+}
+
+/* Cards & modules reveal: smooth upward settle (24px) */
+.scroll-reveal--card {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal--card.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  will-change: auto;
+}
+
+/* Image & banner subtle reveal: gentle upward shift + tiny scale (0.985 -> 1) */
+.scroll-reveal--img {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0) scale(0.985);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: opacity, transform;
+}
+
+.scroll-reveal--img.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  will-change: auto;
+}
+
+/* --------------------------------------------------------------------------
+   3. Stagger Delay Utility Classes
+   Progressive cascading entry for multi-card grids
+   -------------------------------------------------------------------------- */
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+.reveal-delay-5 { transition-delay: 0.40s; }
+.reveal-delay-6 { transition-delay: 0.48s; }
+
+/* --------------------------------------------------------------------------
+   4. Navigation Active State Styling
+   Smooth highlight transition as visitor browses through sections
+   -------------------------------------------------------------------------- */
+.navbar__wrap ul.navigation > li > a {
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.navbar__wrap ul.navigation > li.active > a {
+  color: #FCAF17 !important;
+}
+
+.navbar__wrap ul.navigation > li.active > a::after {
+  opacity: 1 !important;
+  transform: translateY(0);
+}
+
+/* Dark mode nav active */
+body.active-dark-mode .navbar__wrap ul.navigation > li.active > a {
+  color: #FCAF17 !important;
+}
+
+/* Mobile menu active nav */
+.mobile__menu .menu__outer ul li > a {
+  transition: color 0.25s ease, padding-left 0.25s ease;
+}
+
+.mobile__menu .menu__outer ul li.active > a {
+  color: #FCAF17 !important;
+  padding-left: 10px;
+  font-weight: 600;
+}
+
+/* Header contact button subtle active state */
+.header__btn a.btn {
+  transition: all 0.3s ease;
+}
+
+.header__btn a.btn.nav-contact-active {
+  background-color: #FCAF17;
+  color: #191B1E !important;
+  box-shadow: 0 6px 18px rgba(252, 175, 23, 0.35);
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   5. Scroll-to-Top Button Smooth Floating Interaction
+   -------------------------------------------------------------------------- */
+.scroll-top {
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.scroll-top.open {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0);
+}
+
+.scroll-top:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22) !important;
+}
+
+/* --------------------------------------------------------------------------
+   6. Accessibility & Reduced Motion Support
+   Users with prefers-reduced-motion receive instantaneous, calm transitions
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  .scroll-reveal,
+  .scroll-reveal--heading,
+  .scroll-reveal--text,
+  .scroll-reveal--card,
+  .scroll-reveal--img,
+  .service-card,
+  .skill-item,
+  .cert-card,
+  .pcontact-cta-card,
+  .scroll-top {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+    will-change: auto !important;
+  }
+}

@@ -1,0 +1,733 @@
+/* ==========================================================================
+   INTERACTIVE SERVICES SECTION
+   - Layout: Two-column desktop layout (Dynamic Preview Left, Interactive List Right)
+   - Left Column: Dynamic service preview card with image, eyebrow, title, description,
+     and rounded tags (or 5 compact skill categories for Additional Skills)
+   - Right Column: Section eyebrow, serif heading, 4 interactive rows with 2-digit numbers,
+     serif titles, dividers, and circular indicators
+   - Interaction: Hover, click, keyboard, and scroll-activated synchronization
+   - Palette: Warm off-white #F7F5F1, Deep Navy #0B1F3A, Orange #FF7014, Muted Blue-Gray #64748B
+   - 100% responsive for Desktop, Tablet, and Mobile
+   - Dark mode compatible (.active-dark-mode)
+   - Reduced-motion compliant
+   ========================================================================== */
+
+/* -------------------------------------------------------------
+   1. Section Wrapper
+   ------------------------------------------------------------- */
+.services-interactive {
+  position: relative;
+  background-color: #F7F5F1;
+  padding: 120px 0;
+  overflow: visible;
+  z-index: 5;
+}
+
+/* Invisible backward-compatible scroll anchor for #servicesSection */
+.services-interactive__anchor {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* -------------------------------------------------------------
+   2. Two-Column Layout Container
+   ------------------------------------------------------------- */
+.services-interactive__layout {
+  display: grid;
+  grid-template-columns: minmax(360px, 480px) 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+/* -------------------------------------------------------------
+   3. Left Column: Sticky Dynamic Preview Panel
+   ------------------------------------------------------------- */
+.services-interactive__left {
+  position: sticky;
+  top: 110px;
+  z-index: 5;
+}
+
+.services-interactive__preview-card {
+  position: relative;
+  background: #FFFFFF;
+  border-radius: 24px;
+  padding: 26px;
+  border: 1px solid rgba(11, 31, 58, 0.08);
+  box-shadow: 0 16px 40px -12px rgba(11, 31, 58, 0.06);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.services-interactive__preview-card.is-revealed {
+  transform: none;
+}
+
+/* -------------------------------------------------------------
+   4. Preview Panels & Content
+   ------------------------------------------------------------- */
+.service-preview-panel {
+  display: none;
+}
+
+.service-preview-panel.is-active {
+  display: block;
+  animation: serviceFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Image Container */
+.service-preview__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #EDEAE5;
+  box-shadow: inset 0 0 0 1px rgba(11, 31, 58, 0.06);
+}
+
+.service-preview__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-preview-panel.is-active .service-preview__img {
+  animation: serviceImgScale 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Body Information */
+.service-preview__body {
+  padding-top: 4px;
+}
+
+.service-preview__eyebrow {
+  display: inline-block;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #FF7014;
+  margin-top: 22px;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.service-preview-panel.is-active .service-preview__eyebrow {
+  animation: serviceItemUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.05s backwards;
+}
+
+.service-preview__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: #0B1F3A;
+  margin: 0 0 12px 0;
+  line-height: 1.25;
+}
+
+.service-preview-panel.is-active .service-preview__title {
+  animation: serviceItemUp 0.38s cubic-bezier(0.16, 1, 0.3, 1) 0.1s backwards;
+}
+
+.service-preview__title-dot {
+  color: #FF7014;
+}
+
+.service-preview__desc {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #64748B;
+  margin: 0 0 22px 0;
+}
+
+.service-preview-panel.is-active .service-preview__desc {
+  animation: serviceItemUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.15s backwards;
+}
+
+/* Standard Rounded Skill Tags (Services 1, 2, 3) */
+.service-preview__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.service-preview__tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 18px;
+  border-radius: 9999px;
+  background: #F7F5F1;
+  border: 1px solid rgba(11, 31, 58, 0.12);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #0B1F3A;
+  transition: all 0.25s ease;
+  user-select: none;
+}
+
+.service-preview-panel.is-active .service-preview__tag {
+  animation: serviceItemUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation-delay: calc(0.18s + var(--tag-idx, 0) * 0.05s);
+}
+
+.service-preview__tag:hover {
+  border-color: #FF7014;
+  color: #FF7014;
+  background: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 112, 20, 0.12);
+}
+
+/* -------------------------------------------------------------
+   5. Additional Skills Grid (Service 04 — Beyond Design)
+   ------------------------------------------------------------- */
+.service-preview__skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.service-preview__skill-card {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #F7F5F1;
+  border: 1px solid rgba(11, 31, 58, 0.1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.service-preview-panel.is-active .service-preview__skill-card {
+  animation: serviceItemUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation-delay: calc(0.16s + var(--tag-idx, 0) * 0.05s);
+}
+
+.service-preview__skill-card--full {
+  grid-column: span 2;
+}
+
+.service-preview__skill-tag-num {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #FF7014;
+  margin-bottom: 4px;
+  line-height: 1;
+}
+
+.service-preview__skill-tag-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #0B1F3A;
+  margin: 0 0 3px 0;
+  line-height: 1.3;
+}
+
+.service-preview__skill-tag-desc {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #64748B;
+  margin: 0;
+}
+
+.service-preview__skill-card:hover {
+  background: #FFFFFF;
+  border-color: rgba(255, 112, 20, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(11, 31, 58, 0.06);
+}
+
+/* -------------------------------------------------------------
+   6. Right Column: Section Header & Service Rows List
+   ------------------------------------------------------------- */
+.services-interactive__right {
+  display: flex;
+  flex-direction: column;
+}
+
+.services-interactive__header {
+  margin-bottom: 36px;
+}
+
+.services-interactive__eyebrow {
+  display: block;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #FF7014;
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+
+.services-interactive__heading {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: #0B1F3A;
+  margin: 0;
+}
+
+.services-interactive__heading-dot {
+  color: #FF7014;
+}
+
+/* Service Rows Container */
+.services-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-top: 1px solid rgba(11, 31, 58, 0.1);
+}
+
+/* Individual Interactive Service Row */
+.service-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 34px 20px;
+  border-bottom: 1px solid rgba(11, 31, 58, 0.1);
+  border-radius: 16px;
+  cursor: pointer;
+  background: transparent;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  outline: none;
+  margin: 4px 0;
+  user-select: none;
+}
+
+.service-row__left {
+  display: flex;
+  align-items: baseline;
+  gap: 28px;
+}
+
+.service-row__num {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #94A3B8;
+  width: 36px;
+  flex-shrink: 0;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.service-row__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: #334155;
+  margin: 0;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.service-row__right {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  flex-shrink: 0;
+}
+
+.service-row__indicator {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1.5px solid rgba(11, 31, 58, 0.18);
+  color: #64748B;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-row__indicator svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Row Hover State */
+.service-row:hover {
+  background: rgba(255, 255, 255, 0.65);
+  padding-left: 26px;
+}
+
+.service-row:hover .service-row__num {
+  color: #FF7014;
+}
+
+.service-row:hover .service-row__title {
+  color: #0B1F3A;
+  transform: translateX(4px);
+}
+
+.service-row:hover .service-row__indicator {
+  border-color: #FF7014;
+  color: #FF7014;
+  transform: scale(1.04);
+}
+
+/* Row Active State */
+.service-row.is-active {
+  background: #FFFFFF;
+  box-shadow: 0 10px 30px -10px rgba(11, 31, 58, 0.08);
+  padding-left: 28px;
+  border-color: transparent;
+}
+
+.service-row.is-active .service-row__num {
+  color: #FF7014;
+  transform: scale(1.05);
+}
+
+.service-row.is-active .service-row__title {
+  color: #0B1F3A;
+  font-weight: 700;
+  transform: translateX(6px);
+}
+
+.service-row.is-active .service-row__indicator {
+  background: #FF7014;
+  border-color: #FF7014;
+  color: #FFFFFF;
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(255, 112, 20, 0.35);
+}
+
+.service-row.is-active .service-row__indicator svg {
+  transform: rotate(0deg) scale(1.05);
+}
+
+/* Keyboard accessibility */
+.service-row:focus-visible {
+  outline: 2px solid #FF7014;
+  outline-offset: 3px;
+}
+
+/* -------------------------------------------------------------
+   7. Animation Keyframes
+   ------------------------------------------------------------- */
+@keyframes serviceFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes serviceImgScale {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes serviceItemUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* -------------------------------------------------------------
+   8. Responsive Breakpoints
+   ------------------------------------------------------------- */
+@media (max-width: 1199.98px) {
+  .services-interactive__layout {
+    grid-template-columns: 380px 1fr;
+    gap: 48px;
+  }
+
+  .services-interactive__heading {
+    font-size: 42px;
+  }
+
+  .service-row__title {
+    font-size: 28px;
+  }
+
+  .service-row {
+    padding: 28px 16px;
+  }
+}
+
+/* Tablet Layout (<= 991.98px): Reorder so Header is 1st, Preview Card is 2nd, and Service List is 3rd */
+@media (max-width: 991.98px) {
+  .services-interactive {
+    padding: 100px 0;
+  }
+
+  .services-interactive__layout {
+    display: flex;
+    flex-direction: column;
+    max-width: 620px;
+    margin: 0 auto;
+    width: 100%;
+    gap: 0;
+  }
+
+  /* Flatten column wrappers so children participate directly in flex ordering */
+  .services-interactive__left {
+    display: contents;
+    position: static;
+  }
+
+  .services-interactive__right {
+    display: contents;
+  }
+
+  /* 1. Eyebrow + Heading */
+  .services-interactive__header {
+    order: 1;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 26px;
+  }
+
+  /* 2. Dynamic Service Preview Card */
+  .services-interactive__preview-card {
+    order: 2;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 36px;
+    position: relative;
+    box-sizing: border-box;
+  }
+
+  /* 3. Service List with all options */
+  .services-list {
+    order: 3;
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  /* 4. Let's discuss your project / footer link if present */
+  .services-interactive__footer,
+  .services-interactive__cta,
+  .services-interactive__discuss {
+    order: 4;
+    width: 100%;
+    margin-top: 24px;
+  }
+
+  .service-row__title {
+    font-size: 26px;
+  }
+
+  .service-row {
+    padding: 26px 16px;
+  }
+}
+
+/* Mobile Layout (<= 767.98px) */
+@media (max-width: 767.98px) {
+  .services-interactive {
+    padding: 80px 0;
+  }
+
+  .services-interactive__layout {
+    max-width: 100%;
+    gap: 0;
+  }
+
+  .services-interactive__header {
+    margin-bottom: 20px;
+  }
+
+  .services-interactive__preview-card {
+    padding: 18px;
+    border-radius: 20px;
+    margin-bottom: 28px;
+  }
+
+  .service-preview__media {
+    border-radius: 16px;
+  }
+
+  .service-preview__title {
+    font-size: 24px;
+  }
+
+  .service-preview__desc {
+    font-size: 14px;
+    margin-bottom: 18px;
+  }
+
+  .service-preview__skills-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .service-preview__skill-card--full {
+    grid-column: span 1;
+  }
+
+  .services-interactive__heading {
+    font-size: 34px;
+  }
+
+  .service-row {
+    padding: 20px 12px;
+    margin: 2px 0;
+  }
+
+  .service-row__left {
+    gap: 16px;
+  }
+
+  .service-row__num {
+    font-size: 16px;
+    width: 26px;
+  }
+
+  .service-row__title {
+    font-size: 20px;
+  }
+
+  .service-row__indicator {
+    width: 40px;
+    height: 40px;
+  }
+
+  .service-row__indicator svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .service-row:hover,
+  .service-row.is-active {
+    padding-left: 16px;
+  }
+
+  .service-row:hover .service-row__title,
+  .service-row.is-active .service-row__title {
+    transform: translateX(3px);
+  }
+}
+
+/* -------------------------------------------------------------
+   9. Dark Mode Compatibility (.active-dark-mode)
+   ------------------------------------------------------------- */
+.active-dark-mode .services-interactive {
+  background-color: #0b1220;
+}
+
+.active-dark-mode .services-interactive__preview-card {
+  background: #131c2e;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
+.active-dark-mode .service-preview__title,
+.active-dark-mode .services-interactive__heading {
+  color: #F8FAFC;
+}
+
+.active-dark-mode .service-preview__desc,
+.active-dark-mode .service-preview__skill-tag-desc {
+  color: #94A3B8;
+}
+
+.active-dark-mode .service-preview__tag,
+.active-dark-mode .service-preview__skill-card {
+  background: #1e293b;
+  border-color: rgba(255, 255, 255, 0.08);
+  color: #F8FAFC;
+}
+
+.active-dark-mode .service-preview__skill-tag-title {
+  color: #F8FAFC;
+}
+
+.active-dark-mode .services-list {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.active-dark-mode .service-row {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.active-dark-mode .service-row__title {
+  color: #94A3B8;
+}
+
+.active-dark-mode .service-row__indicator {
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #94A3B8;
+}
+
+.active-dark-mode .service-row:hover {
+  background: rgba(30, 41, 59, 0.5);
+}
+
+.active-dark-mode .service-row:hover .service-row__title {
+  color: #F8FAFC;
+}
+
+.active-dark-mode .service-row.is-active {
+  background: #131c2e;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.active-dark-mode .service-row.is-active .service-row__title {
+  color: #F8FAFC;
+}
+
+/* -------------------------------------------------------------
+   10. Reduced Motion
+   ------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .service-preview-panel.is-active,
+  .service-preview-panel.is-active .service-preview__img,
+  .service-preview-panel.is-active .service-preview__eyebrow,
+  .service-preview-panel.is-active .service-preview__title,
+  .service-preview-panel.is-active .service-preview__desc,
+  .service-preview-panel.is-active .service-preview__tag,
+  .service-preview-panel.is-active .service-preview__skill-card {
+    animation: none !important;
+  }
+
+  .service-row,
+  .service-row__num,
+  .service-row__title,
+  .service-row__indicator,
+  .service-preview__tag,
+  .service-preview__skill-card {
+    transition: none !important;
+  }
+}

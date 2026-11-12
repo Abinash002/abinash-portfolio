@@ -1,0 +1,799 @@
+/* ==========================================================================
+   Parallax Contact & Footer System - Refined Production Design
+   - Solid Deep Navy background across the entire Footer section
+   - Warm Off-White rounded Contact panel with Two-Column layout
+   - Left: Editorial serif heading, description & 3 feature highlights
+   - Right: White form card (Name, Email, Subject, Message, Send button)
+   - Four-column clean Footer grid (Contact, Explore, Services, Follow Along)
+   - Bottom copyright row with orange accent line
+   - Fully responsive for Desktop, Tablet, and Mobile devices
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Architecture & Layering for Parallax Reveal
+   -------------------------------------------------------------------------- */
+
+/* Main content area sits as the top layer */
+.main-area, main {
+  position: relative;
+  z-index: 10;
+  background: #ffffff;
+  box-shadow: 0 30px 60px rgba(15, 23, 42, 0.08);
+}
+
+body.active-dark-mode .main-area,
+body.active-dark-mode main {
+  background: #0d1322;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* Wrapper for the revealed sections at the bottom */
+.parallax-reveal-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: clip;
+}
+
+/* --------------------------------------------------------------------------
+   2. Unified Footer Area (Deep Solid Navy Background)
+   -------------------------------------------------------------------------- */
+.parallax-footer {
+  position: relative;
+  width: 100%;
+  background: #0c1827;
+  color: #ffffff;
+  padding: 80px 0 0;
+  overflow: hidden;
+  will-change: transform;
+}
+
+body.active-dark-mode .parallax-footer {
+  background: #0c1827;
+}
+
+.parallax-footer__inner {
+  position: relative;
+  width: 100%;
+  will-change: transform;
+}
+
+/* --------------------------------------------------------------------------
+   3. Contact Panel (Warm Off-White Rounded Two-Column Card)
+   -------------------------------------------------------------------------- */
+.pcontact-cta-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 35px;
+}
+
+.pcontact-cta-card {
+  position: relative;
+  background: #faf8f5;
+  border-radius: 36px;
+  padding: 56px 60px 52px;
+  overflow: hidden;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.16);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+body.active-dark-mode .pcontact-cta-card {
+  background: #faf8f5;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Soft Pastel Organic Corner Shapes */
+.pcontact-shape {
+  position: absolute;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.pcontact-shape-left {
+  left: 0;
+  width: 220px;
+  height: 180px;
+}
+
+.pcontact-shape-right {
+  right: 0;
+  width: 200px;
+  height: 180px;
+}
+
+.pcontact-shape svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Top Right: Orange Radiating Accent Tick Lines */
+.pcontact-doodle-right {
+  position: absolute;
+  right: 28px;
+  top: 28px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Two-Column Layout Grid */
+.pcontact-grid {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 48px;
+  position: relative;
+  z-index: 3;
+}
+
+/* Left Column: Typography & Feature Highlights */
+.pcontact-left-col {
+  flex: 1 1 50%;
+  max-width: 50%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Eyebrow Tagline: Orange Dash + GET IN TOUCH */
+.pcontact-tagline-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.pcontact-tagline-dash {
+  display: inline-block;
+  width: 32px;
+  height: 2px;
+  background: #ff7020;
+  border-radius: 2px;
+}
+
+.pcontact-tagline-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #ff7020;
+}
+
+/* Main Heading: 54-64px serif, tight line-height, balanced 3-line wrap */
+.pcontact-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 58px;
+  font-weight: 800;
+  line-height: 1.04;
+  color: #0e1524;
+  margin: 0 0 20px 0;
+  letter-spacing: -0.02em;
+}
+
+.pcontact-title-dot {
+  color: #ff7020;
+  display: inline-block;
+}
+
+/* Subtitle / Description */
+.pcontact-desc {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16.5px;
+  line-height: 1.6;
+  color: #5a6678;
+  max-width: 470px;
+  margin: 0 0 38px 0;
+  font-weight: 400;
+}
+
+/* Features Highlights Area & Arrow Doodle */
+.pcontact-features-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: auto;
+}
+
+.pcontact-features-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 24px;
+  row-gap: 16px;
+}
+
+.pcontact-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none !important;
+  color: inherit;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.pcontact-feature-item:hover {
+  text-decoration: none !important;
+}
+
+.pcontact-feature-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0e1524;
+  font-size: 16px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+  transition: transform 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.pcontact-feature-icon svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  color: inherit;
+  fill: currentColor;
+  stroke: none;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.pcontact-feature-item:hover .pcontact-feature-icon svg {
+  color: #ff7020;
+}
+
+.pcontact-feature-item:hover .pcontact-feature-icon {
+  transform: translateY(-2px);
+  border-color: #ff7020;
+  color: #ff7020;
+  box-shadow: 0 6px 16px rgba(255, 112, 32, 0.2);
+}
+
+.pcontact-feature-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.pcontact-feature-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0e1524;
+  margin: 0 0 2px 0;
+  line-height: 1.25;
+  transition: color 0.2s ease;
+}
+
+.pcontact-feature-item:hover .pcontact-feature-title {
+  color: #ff7020;
+}
+
+.pcontact-feature-desc {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 400;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   Right Column: White Form Card
+   -------------------------------------------------------------------------- */
+.pcontact-right-col {
+  flex: 0 0 48%;
+  max-width: 500px;
+  width: 100%;
+  min-width: 0;
+}
+
+.pcontact-form-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 38px 36px 36px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.pcontact-form-header {
+  margin-bottom: 22px;
+}
+
+.pcontact-form-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 25px;
+  font-weight: 700;
+  color: #0e1524;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.01em;
+}
+
+.pcontact-form-subtitle {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.45;
+}
+
+.pcontact-form-group {
+  margin-bottom: 22px;
+}
+
+.pcontact-form-label {
+  display: block;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #0e1524;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.pcontact-form-control {
+  width: 100%;
+  height: 52px;
+  padding: 0 18px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  color: #0e1524;
+  background: #ffffff;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.pcontact-form-control:focus {
+  border-color: #0062ff;
+  box-shadow: 0 0 0 3px rgba(0, 98, 255, 0.12);
+}
+
+.pcontact-form-control::placeholder {
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.pcontact-textarea-wrap {
+  position: relative;
+  width: 100%;
+}
+
+textarea.pcontact-form-control.pcontact-textarea {
+  height: 140px;
+  min-height: 140px;
+  padding: 14px 18px 28px 18px;
+  resize: none;
+  line-height: 1.5;
+}
+
+.pcontact-char-count {
+  position: absolute;
+  right: 14px;
+  bottom: 8px;
+  font-size: 11.5px;
+  color: #94a3b8;
+  pointer-events: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 500;
+}
+
+.pcontact-form-submit {
+  margin-top: 24px;
+}
+
+.pcontact-submit-btn {
+  width: 100%;
+  height: 54px;
+  background: #0062ff;
+  color: #ffffff;
+  border: none;
+  border-radius: 9999px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 4px 16px rgba(0, 98, 255, 0.28);
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.pcontact-submit-btn:hover {
+  background: #004fe0;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 98, 255, 0.35);
+}
+
+.pcontact-submit-btn:active {
+  transform: translateY(0);
+}
+
+.pcontact-submit-btn:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.pcontact-btn-arrow {
+  font-size: 16px;
+  transition: transform 0.2s ease;
+  display: inline-block;
+  line-height: 1;
+}
+
+.pcontact-submit-btn:hover .pcontact-btn-arrow {
+  transform: translateX(3px);
+}
+
+.pcontact-status-banner {
+  padding: 13px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  animation: pcontactFadeIn 0.3s ease-out;
+}
+
+@keyframes pcontactFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pcontact-status-banner.success {
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.pcontact-status-banner.error {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+/* --------------------------------------------------------------------------
+   4. Four Columns Footer Layout
+   -------------------------------------------------------------------------- */
+.pfooter-columns-wrap {
+  padding-bottom: 10px;
+}
+
+/* Column Header & Underline Bar */
+.pfooter-col-head {
+  margin-bottom: 20px;
+}
+
+.pfooter-col-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+}
+
+.pfooter-title-bar {
+  display: block;
+  width: 26px;
+  height: 1.5px;
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 1px;
+}
+
+/* Vertical Column Divider Borders (Desktop) */
+@media (min-width: 992px) {
+  .pfooter-col-contact {
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    padding-right: 32px;
+  }
+
+  .pfooter-col-follow {
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    padding-left: 36px;
+  }
+}
+
+/* Column 1: Contact Details */
+.pfooter-contact-items {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pfooter-contact-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pfooter-contact-icon {
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.pfooter-contact-val {
+  color: #e2e8f0;
+  font-size: 14px;
+  text-decoration: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 400;
+  transition: color 0.2s ease;
+}
+
+a.pfooter-contact-val:hover {
+  color: #ffffff;
+}
+
+/* Columns 2 & 3: Navigation Links */
+.pfooter-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.pfooter-list li a {
+  color: #cbd5e1;
+  font-size: 14px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.pfooter-list li a:hover {
+  color: #ffffff;
+  transform: translateX(3px);
+}
+
+/* Column 4: Minimal White Outline Social Icons */
+.pfooter-social-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding-top: 4px;
+}
+
+.pfooter-social-item {
+  color: #ffffff;
+  opacity: 0.9;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  width: 22px;
+  height: 22px;
+}
+
+.pfooter-social-item:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  color: #38bdf8;
+}
+
+/* --------------------------------------------------------------------------
+   5. Thin Horizontal Divider & Bottom Copyright Row
+   -------------------------------------------------------------------------- */
+.pfooter-divider {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin: 55px 0 24px;
+  width: 100%;
+}
+
+.pfooter-bottom-wrap {
+  padding-bottom: 24px;
+}
+
+.pfooter-bottom-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  color: #8e9aa8;
+}
+
+.pfooter-copyright-left {
+  margin: 0;
+  color: #8e9aa8;
+}
+
+.pfooter-rights {
+  margin-left: 12px;
+}
+
+.pfooter-copyright-right {
+  margin: 0;
+  color: #8e9aa8;
+  display: inline-flex;
+  align-items: center;
+}
+
+.pfooter-accent-line {
+  display: inline-block;
+  width: 34px;
+  height: 2px;
+  background: #ff7020;
+  margin-right: 12px;
+  border-radius: 1px;
+}
+
+/* --------------------------------------------------------------------------
+   6. Responsive Adjustments
+   -------------------------------------------------------------------------- */
+@media (max-width: 1199.98px) {
+  .pcontact-cta-card {
+    padding: 48px 44px 44px;
+  }
+  .pcontact-title {
+    font-size: 50px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .parallax-footer {
+    padding: 60px 0 20px;
+  }
+
+  .pcontact-cta-wrapper {
+    padding-bottom: 50px;
+  }
+
+  .pcontact-cta-card {
+    padding: 44px 32px 38px;
+    border-radius: 28px;
+  }
+
+  .pcontact-grid {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .pcontact-left-col,
+  .pcontact-right-col {
+    max-width: 100%;
+    width: 100%;
+    flex: 1 1 100%;
+  }
+
+  .pcontact-form-card {
+    padding: 34px 28px 30px;
+  }
+
+  .pcontact-title {
+    font-size: 46px;
+    line-height: 1.08;
+  }
+
+  .pcontact-desc {
+    max-width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .pcontact-shape-left {
+    width: 140px;
+    height: 120px;
+  }
+
+  .pcontact-shape-right {
+    width: 130px;
+    height: 120px;
+  }
+
+  .pfooter-col {
+    margin-bottom: 30px;
+  }
+
+  .pfooter-col-contact,
+  .pfooter-col-follow {
+    border: none;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .pcontact-cta-card {
+    padding: 30px 18px 26px;
+    border-radius: 20px;
+  }
+
+  .pcontact-title {
+    font-size: 36px;
+    line-height: 1.1;
+  }
+
+  .pcontact-desc {
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+
+  .pcontact-features-list {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .pcontact-form-card {
+    padding: 28px 20px 24px;
+    border-radius: 16px;
+  }
+
+  .pcontact-form-group {
+    margin-bottom: 18px;
+  }
+
+  .pcontact-form-control {
+    height: 48px;
+    padding: 0 16px;
+    font-size: 14.5px;
+  }
+
+  textarea.pcontact-form-control.pcontact-textarea {
+    height: 130px;
+    min-height: 130px;
+    padding: 12px 16px 26px 16px;
+  }
+
+  .pcontact-submit-btn {
+    height: 50px;
+    font-size: 14px;
+  }
+
+  .pcontact-form-title {
+    font-size: 22px;
+  }
+
+  .pfooter-bottom-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .pcontact-submit-btn,
+  .pcontact-form-control,
+  .pcontact-feature-icon,
+  .pfooter-social-item,
+  .pfooter-list li a {
+    transition: none !important;
+  }
+}

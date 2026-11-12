@@ -1,0 +1,1542 @@
+/* ==========================================================================
+   PORTFOLIO PREMIUM DARK THEME
+   - Consistent, sophisticated dark editorial aesthetic across the entire portfolio
+   - Palette:
+     * Primary Background: #0B1220
+     * Secondary Background: #101A2B
+     * Alternate Section Background: #0E1726
+     * Card Background: #131F32
+     * Elevated Surface: #18263A
+     * Input Background: #111C2D
+     * Subtle Borders: rgba(255, 255, 255, 0.09)
+     * Primary Heading: #F5F3EF
+     * Body Text: #C1C9D5
+     * Secondary Text: #8995A7
+     * Muted Text: #69778B
+     * Accent Blue (Interactions & Focus): #3B82F6
+     * Accent Orange (Highlights & Indicators): #FF7014
+     * Soft Blue (Supporting Accents): #8BB8FF
+   ========================================================================== */
+
+/* -------------------------------------------------------------
+   1. Centralized CSS Variables (:root & Body)
+   ------------------------------------------------------------- */
+:root {
+  --bg-primary: #0B1220;
+  --bg-secondary: #101A2B;
+  --bg-alt: #0E1726;
+  --bg-deep: #080E18;
+
+  --card-bg: #131F32;
+  --surface-elevated: #18263A;
+  --input-bg: #111C2D;
+
+  --border-subtle: rgba(255, 255, 255, 0.09);
+  --border-medium: rgba(255, 255, 255, 0.14);
+  --border-focus: #3B82F6;
+
+  --text-primary: #F5F3EF;
+  --text-body: #C1C9D5;
+  --text-secondary: #8995A7;
+  --text-muted: #69778B;
+
+  --accent-blue: #2563EB;
+  --accent-blue-hover: #1D4ED8;
+  --accent-blue-soft: #8BB8FF;
+  --accent-blue-subtle: rgba(37, 99, 235, 0.18);
+
+  --accent-orange: #FF7014;
+  --accent-orange-hover: #E05F0A;
+  --accent-orange-subtle: rgba(255, 112, 20, 0.18);
+}
+
+/* Base Body Styles (Dark Mode Only) */
+html.dark-theme,
+html.active-dark-mode,
+body.dark-theme,
+body.active-dark-mode {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-body) !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Universal Typography */
+h1, h2, h3, h4, h5, h6,
+.title,
+.section__title .title {
+  color: var(--text-primary) !important;
+}
+
+p, span, li, a {
+  color: inherit;
+}
+
+::selection {
+  background: rgba(59, 130, 246, 0.35);
+  color: var(--text-primary);
+}
+
+/* Preloader */
+#preloader {
+  background-color: var(--bg-primary) !important;
+}
+
+.Abinash-spin-box {
+  border: 4px solid rgba(255, 255, 255, 0.08) !important;
+  border-top-color: var(--accent-blue) !important;
+}
+
+/* Back to Top Button */
+.scroll-top {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border-medium) !important;
+  color: var(--text-body) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+}
+
+.scroll-top:hover {
+  background: var(--accent-blue) !important;
+  border-color: var(--accent-blue) !important;
+  color: #FFFFFF !important;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(59, 130, 246, 0.4) !important;
+}
+
+/* -------------------------------------------------------------
+   2. Navigation & Sticky Header
+   ------------------------------------------------------------- */
+.menu__area {
+  background: transparent !important;
+  transition: all 0.3s ease;
+}
+
+#sticky-header.sticky-menu {
+  background: rgba(11, 18, 32, 0.94) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* Logo in dark mode: display official logo_white.png and hide logo_black.png */
+body.dark-theme .menu__nav .logo .logo__black,
+body.active-dark-mode .menu__nav .logo .logo__black,
+body.dark-theme .mobile__menu .menu__box .nav-logo .logo__black,
+body.active-dark-mode .mobile__menu .menu__box .nav-logo .logo__black {
+  display: none !important;
+}
+
+body.dark-theme .menu__nav .logo .logo__white,
+body.active-dark-mode .menu__nav .logo .logo__white,
+body.dark-theme .mobile__menu .menu__box .nav-logo .logo__white,
+body.active-dark-mode .mobile__menu .menu__box .nav-logo .logo__white {
+  display: inline-block !important;
+}
+
+.menu__nav .logo img,
+.nav-logo img {
+  max-width: 197px;
+  height: auto;
+  transition: opacity 0.25s ease;
+}
+
+.menu__nav .logo:hover img {
+  opacity: 0.92;
+}
+
+/* Nav items */
+.navigation > li > a {
+  color: var(--text-body) !important;
+  font-weight: 500;
+  transition: color 0.25s ease;
+}
+
+.navigation > li:hover > a,
+.navigation > li.active > a {
+  color: var(--accent-orange) !important;
+}
+
+/* Active navigation arrow/triangle */
+.navigation > li.active > a::after {
+  border-bottom-color: var(--accent-orange) !important;
+}
+
+/* Header Contact Button (Orange #FCAF17 in Dark Mode) */
+body.dark-theme .header__btn .btn,
+body.active-dark-mode .header__btn .btn,
+body.dark-theme .header__btn a.btn,
+body.active-dark-mode .header__btn a.btn,
+.header__btn .btn,
+.header__btn a.btn {
+  background: #FCAF17 !important;
+  color: #0B1220 !important;
+  border: 1px solid #FCAF17 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 16px rgba(252, 175, 23, 0.35) !important;
+  transition: all 0.3s ease !important;
+}
+
+body.dark-theme .header__btn .btn:hover,
+body.active-dark-mode .header__btn .btn:hover,
+body.dark-theme .header__btn a.btn:hover,
+body.active-dark-mode .header__btn a.btn:hover,
+.header__btn .btn:hover,
+.header__btn a.btn:hover {
+  background: #E59A08 !important;
+  color: #0B1220 !important;
+  border-color: #E59A08 !important;
+  box-shadow: 0 8px 24px rgba(252, 175, 23, 0.55) !important;
+  transform: translateY(-2px);
+}
+
+/* Mobile Menu Drawer */
+.mobile__nav__toggler {
+  color: var(--text-primary) !important;
+}
+
+.mobile__menu .menu__box {
+  background: var(--bg-primary) !important;
+  border-left: 1px solid var(--border-subtle) !important;
+}
+
+.mobile__menu .close__btn {
+  color: var(--text-body) !important;
+}
+
+.mobile__menu .navigation > li > a {
+  color: var(--text-primary) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+}
+
+.mobile__menu .navigation > li.active > a,
+.mobile__menu .navigation > li:hover > a {
+  color: var(--accent-orange) !important;
+}
+
+.mobile__menu .social-links li a {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-body) !important;
+}
+
+.mobile__menu .social-links li a:hover {
+  background: var(--accent-blue) !important;
+  color: #FFFFFF !important;
+  border-color: var(--accent-blue) !important;
+}
+
+/* -------------------------------------------------------------
+   3. Hero Section (.banner)
+   ------------------------------------------------------------- */
+.banner {
+  background-color: var(--bg-primary) !important;
+}
+
+.banner__content .sub-title {
+  color: var(--text-secondary) !important;
+}
+
+.banner__content .title {
+  color: var(--text-primary) !important;
+}
+
+.banner__content .title span {
+  color: var(--accent-orange) !important;
+}
+
+.banner__content p {
+  color: var(--text-body) !important;
+}
+
+/* Hero Primary CTA: DOWNLOAD MY CV (Solid Filled Button in Dark Mode - light theme box radius) */
+body.dark-theme .banner__btn__wrap .hero-btn-cv,
+body.active-dark-mode .banner__btn__wrap .hero-btn-cv,
+.banner__btn__wrap .hero-btn-cv,
+.hero-btn-cv {
+  background: #2563EB !important;
+  background-color: #2563EB !important;
+  color: #FFFFFF !important;
+  border: 1px solid #2563EB !important;
+  border-radius: 0 !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  box-shadow: 0 6px 22px rgba(37, 99, 235, 0.42) !important;
+  transition: all 0.25s ease !important;
+}
+
+body.dark-theme .banner__btn__wrap .hero-btn-cv:hover,
+body.active-dark-mode .banner__btn__wrap .hero-btn-cv:hover,
+.banner__btn__wrap .hero-btn-cv:hover,
+.hero-btn-cv:hover {
+  background: #1D4ED8 !important;
+  background-color: #1D4ED8 !important;
+  border-color: #1D4ED8 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.6) !important;
+  transform: translateY(-2px) !important;
+}
+
+body.dark-theme .banner__btn__wrap .hero-btn-cv i,
+body.active-dark-mode .banner__btn__wrap .hero-btn-cv i,
+.banner__btn__wrap .hero-btn-cv i,
+.hero-btn-cv i {
+  color: #FFFFFF !important;
+}
+
+/* Hero Secondary CTA: VIEW MY WORKS (Outline in Dark Mode - light theme box radius) */
+body.dark-theme .banner__btn__wrap .hero-btn-works,
+body.active-dark-mode .banner__btn__wrap .hero-btn-works,
+.banner__btn__wrap .hero-btn-works,
+.hero-btn-works {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: #F5F3EF !important;
+  border: 1px solid rgba(255, 255, 255, 0.24) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transition: all 0.25s ease !important;
+}
+
+body.dark-theme .banner__btn__wrap .hero-btn-works:hover,
+body.active-dark-mode .banner__btn__wrap .hero-btn-works:hover,
+.banner__btn__wrap .hero-btn-works:hover,
+.hero-btn-works:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #FFFFFF !important;
+  border-color: rgba(255, 255, 255, 0.45) !important;
+  transform: translateY(-2px) !important;
+}
+
+.scroll__link {
+  color: var(--text-secondary) !important;
+  border-color: var(--border-medium) !important;
+}
+
+.scroll__link:hover {
+  color: var(--accent-orange) !important;
+  border-color: var(--accent-orange) !important;
+}
+
+.scroll__link::before {
+  background: var(--accent-orange) !important;
+}
+
+/* -------------------------------------------------------------
+   4. About Section (.about in index.html)
+   ------------------------------------------------------------- */
+.about {
+  background-color: var(--bg-alt) !important;
+}
+
+.about__tag-wrap .sub-title,
+.about__tag-text {
+  color: var(--accent-orange) !important;
+}
+
+.about__tag-line {
+  background-color: var(--accent-orange) !important;
+}
+
+.about__headline {
+  color: var(--text-primary) !important;
+}
+
+.about__dot {
+  color: var(--accent-orange) !important;
+}
+
+.about__body-copy p {
+  color: var(--text-body) !important;
+}
+
+.about__body-copy span,
+.about__body-copy strong {
+  color: var(--accent-blue-soft) !important;
+}
+
+/* Orbit Visual System */
+.about__orbit-hub {
+  background: radial-gradient(circle, var(--surface-elevated) 0%, var(--card-bg) 70%, var(--bg-alt) 100%) !important;
+  border: 1px solid var(--border-medium) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45), inset 0 1px 4px rgba(255, 255, 255, 0.08) !important;
+}
+
+.orbit-hub-title {
+  color: var(--text-primary) !important;
+}
+
+.orbit-hub-sub {
+  color: var(--text-secondary) !important;
+}
+
+.orbit-ring--outer,
+.orbit-ring--inner,
+.orbit-circle-outer,
+.orbit-circle-inner {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  stroke: rgba(255, 255, 255, 0.08) !important;
+}
+
+.orbit-item {
+  background: var(--surface-elevated) !important;
+  border: 1px solid var(--border-subtle) !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3) !important;
+}
+
+.about__orbit-glow-1,
+.about__orbit-glow-2 {
+  opacity: 0.12 !important;
+}
+
+/* About Action Buttons (matching light theme 4px curve radius) */
+/* About Primary CTA: MORE ABOUT ME (Solid Filled Button in Dark Mode - light theme box radius) */
+body.dark-theme .about-action-btn--primary,
+body.active-dark-mode .about-action-btn--primary,
+.about-action-btn--primary {
+  background: #2563EB !important;
+  background-color: #2563EB !important;
+  color: #FFFFFF !important;
+  border: 1px solid #2563EB !important;
+  border-radius: 4px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 6px 22px rgba(37, 99, 235, 0.42) !important;
+  transition: all 0.25s ease !important;
+}
+
+body.dark-theme .about-action-btn--primary:hover,
+body.active-dark-mode .about-action-btn--primary:hover,
+.about-action-btn--primary:hover {
+  background: #1D4ED8 !important;
+  background-color: #1D4ED8 !important;
+  border-color: #1D4ED8 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.6) !important;
+  transform: translateY(-2px) !important;
+}
+
+body.dark-theme .about-action-btn--primary svg,
+body.active-dark-mode .about-action-btn--primary svg,
+.about-action-btn--primary svg,
+body.dark-theme .about-action-btn--primary svg path,
+body.active-dark-mode .about-action-btn--primary svg path,
+.about-action-btn--primary svg path {
+  color: #FFFFFF !important;
+  fill: #FFFFFF !important;
+  stroke: #FFFFFF !important;
+}
+
+.about-action-btn--outline {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border-medium) !important;
+  border-radius: 4px !important;
+  color: var(--text-primary) !important;
+}
+
+.about-action-btn--outline:hover {
+  border-color: var(--accent-blue) !important;
+  color: var(--accent-blue) !important;
+  background: var(--accent-blue-subtle) !important;
+  transform: translateY(-2px);
+}
+
+/* -------------------------------------------------------------
+   5. About Page Hero & Details (about.html)
+   ------------------------------------------------------------- */
+.about-hero {
+  background-color: var(--bg-primary) !important;
+}
+
+.about-hero__label {
+  color: var(--accent-orange) !important;
+}
+
+.about-hero__label-line {
+  background-color: var(--accent-orange) !important;
+}
+
+.about-hero__heading {
+  color: var(--text-primary) !important;
+}
+
+.about-hero__intro {
+  color: var(--text-body) !important;
+}
+
+.about-hero svg rect[fill="#FFFFFF"] {
+  fill: var(--surface-elevated) !important;
+  stroke: rgba(255, 255, 255, 0.08) !important;
+}
+
+.about-hero .diagram-target circle:first-child {
+  fill: var(--card-bg) !important;
+  stroke: var(--border-medium) !important;
+}
+
+.about-details {
+  background-color: var(--bg-alt) !important;
+}
+
+/* -------------------------------------------------------------
+   Certifications Section Navigation Tabs (about.html)
+   ------------------------------------------------------------- */
+body.dark-theme .cert-nav-tabs,
+body.active-dark-mode .cert-nav-tabs,
+.about__info__wrap .cert-nav-tabs,
+.cert-nav-tabs {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09) !important;
+  background: transparent !important;
+}
+
+/* Base Inactive Tab State: Readable Muted Color (#C1C9D5) */
+body.dark-theme .about__info__wrap .cert-nav-tabs .cert-nav-link,
+body.active-dark-mode .about__info__wrap .cert-nav-tabs .cert-nav-link,
+.about__info__wrap .nav-tabs .nav-item .cert-nav-link,
+.about__info__wrap .cert-nav-tabs .cert-nav-link,
+.cert-nav-link {
+  color: #C1C9D5 !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 8px !important;
+  transition: color 250ms ease, background-color 250ms ease, border-color 250ms ease, box-shadow 250ms ease !important;
+}
+
+/* Ensure tab icon & text inherit color cleanly */
+body.dark-theme .about__info__wrap .cert-nav-tabs .cert-nav-link .cert-tab-icon,
+body.active-dark-mode .about__info__wrap .cert-nav-tabs .cert-nav-link .cert-tab-icon,
+body.dark-theme .about__info__wrap .cert-nav-tabs .cert-nav-link .cert-tab-text,
+body.active-dark-mode .about__info__wrap .cert-nav-tabs .cert-nav-link .cert-tab-text,
+.about__info__wrap .cert-nav-tabs .cert-nav-link .cert-tab-icon,
+.about__info__wrap .cert-nav-tabs .cert-nav-link .cert-tab-text,
+.cert-nav-link .cert-tab-icon,
+.cert-nav-link .cert-tab-text {
+  color: inherit !important;
+  transition: color 250ms ease, stroke 250ms ease, transform 250ms ease !important;
+}
+
+body.dark-theme .about__info__wrap .cert-nav-tabs .cert-nav-link .cert-tab-icon svg,
+body.active-dark-mode .about__info__wrap .cert-nav-tabs .cert-nav-link .cert-tab-icon svg,
+.about__info__wrap .cert-nav-tabs .cert-nav-link .cert-tab-icon svg,
+.cert-nav-link .cert-tab-icon svg {
+  color: inherit !important;
+  stroke: currentColor !important;
+  transition: stroke 250ms ease !important;
+}
+
+/* Tab Hover State: Bright White (#FFFFFF) text & icon, Subtle Dark-Blue (#18263A) background */
+body.dark-theme .about__info__wrap .cert-nav-tabs .cert-nav-link:hover,
+body.active-dark-mode .about__info__wrap .cert-nav-tabs .cert-nav-link:hover,
+.about__info__wrap .nav-tabs .nav-item .cert-nav-link:hover,
+.about__info__wrap .cert-nav-tabs .cert-nav-link:hover,
+.cert-nav-link:hover {
+  color: #FFFFFF !important;
+  background-color: #18263A !important;
+}
+
+body.dark-theme .about__info__wrap .cert-nav-tabs .cert-nav-link:hover .cert-tab-icon,
+body.active-dark-mode .about__info__wrap .cert-nav-tabs .cert-nav-link:hover .cert-tab-icon,
+body.dark-theme .about__info__wrap .cert-nav-tabs .cert-nav-link:hover .cert-tab-text,
+body.active-dark-mode .about__info__wrap .cert-nav-tabs .cert-nav-link:hover .cert-tab-text,
+.about__info__wrap .cert-nav-tabs .cert-nav-link:hover .cert-tab-icon,
+.about__info__wrap .cert-nav-tabs .cert-nav-link:hover .cert-tab-text,
+.cert-nav-link:hover .cert-tab-icon,
+.cert-nav-link:hover .cert-tab-text {
+  color: #FFFFFF !important;
+}
+
+body.dark-theme .about__info__wrap .cert-nav-tabs .cert-nav-link:hover .cert-tab-icon svg,
+body.active-dark-mode .about__info__wrap .cert-nav-tabs .cert-nav-link:hover .cert-tab-icon svg,
+.about__info__wrap .cert-nav-tabs .cert-nav-link:hover .cert-tab-icon svg,
+.cert-nav-link:hover .cert-tab-icon svg {
+  color: #FFFFFF !important;
+  stroke: #FFFFFF !important;
+}
+
+/* Active Tab State: Vibrant Blue (#2563EB) background, Bright White (#FFFFFF) text & icon */
+body.dark-theme .about__info__wrap .cert-nav-tabs .cert-nav-link.active,
+body.active-dark-mode .about__info__wrap .cert-nav-tabs .cert-nav-link.active,
+body.dark-theme .about__info__wrap .cert-nav-tabs .cert-nav-link.active:hover,
+body.active-dark-mode .about__info__wrap .cert-nav-tabs .cert-nav-link.active:hover,
+.about__info__wrap .nav-tabs .nav-item .cert-nav-link.active,
+.about__info__wrap .nav-tabs .nav-item .cert-nav-link.active:hover,
+.about__info__wrap .cert-nav-tabs .cert-nav-link.active,
+.about__info__wrap .cert-nav-tabs .cert-nav-link.active:hover,
+.cert-nav-link.active,
+.cert-nav-link.active:hover {
+  background-color: #2563EB !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35) !important;
+}
+
+body.dark-theme .about__info__wrap .cert-nav-tabs .cert-nav-link.active .cert-tab-icon,
+body.active-dark-mode .about__info__wrap .cert-nav-tabs .cert-nav-link.active .cert-tab-icon,
+body.dark-theme .about__info__wrap .cert-nav-tabs .cert-nav-link.active .cert-tab-text,
+body.active-dark-mode .about__info__wrap .cert-nav-tabs .cert-nav-link.active .cert-tab-text,
+.about__info__wrap .cert-nav-tabs .cert-nav-link.active .cert-tab-icon,
+.about__info__wrap .cert-nav-tabs .cert-nav-link.active .cert-tab-text,
+.cert-nav-link.active .cert-tab-icon,
+.cert-nav-link.active .cert-tab-text {
+  color: #FFFFFF !important;
+}
+
+body.dark-theme .about__info__wrap .cert-nav-tabs .cert-nav-link.active .cert-tab-icon svg,
+body.active-dark-mode .about__info__wrap .cert-nav-tabs .cert-nav-link.active .cert-tab-icon svg,
+.about__info__wrap .cert-nav-tabs .cert-nav-link.active .cert-tab-icon svg,
+.cert-nav-link.active .cert-tab-icon svg {
+  color: #FFFFFF !important;
+  stroke: #FFFFFF !important;
+}
+
+/* Remove decorative underline collision in dark mode */
+body.dark-theme .about__info__wrap .cert-nav-tabs .cert-nav-link::after,
+body.active-dark-mode .about__info__wrap .cert-nav-tabs .cert-nav-link::after,
+.about__info__wrap .cert-nav-tabs .cert-nav-link::after,
+.cert-nav-link::after {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+/* Focus State & Keyboard Accessibility */
+body.dark-theme .about__info__wrap .cert-nav-tabs .cert-nav-link:focus-visible,
+body.active-dark-mode .about__info__wrap .cert-nav-tabs .cert-nav-link:focus-visible,
+.about__info__wrap .cert-nav-tabs .cert-nav-link:focus-visible,
+.cert-nav-link:focus-visible {
+  outline: 2px solid #3B82F6 !important;
+  outline-offset: 2px !important;
+}
+
+/* Skills Tab Pills */
+.skills-group {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border-subtle) !important;
+}
+
+.skills-group__title {
+  color: var(--text-primary) !important;
+}
+
+.skill-pill {
+  background: var(--surface-elevated) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-body) !important;
+}
+
+.skill-pill:hover {
+  border-color: var(--accent-blue) !important;
+  color: var(--accent-blue) !important;
+  background: var(--card-bg) !important;
+}
+
+/* -------------------------------------------------------------
+   6. Services Section (.services-interactive)
+   ------------------------------------------------------------- */
+.services-interactive {
+  background-color: var(--bg-primary) !important;
+}
+
+/* Left Preview Card */
+.services-interactive__preview-card {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border-subtle) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45) !important;
+}
+
+.service-preview__media {
+  background: var(--bg-alt) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04) !important;
+}
+
+.service-preview__img {
+  filter: none !important;
+}
+
+.service-preview__eyebrow {
+  color: var(--accent-orange) !important;
+}
+
+.service-preview__title {
+  color: var(--text-primary) !important;
+}
+
+.service-preview__title-dot {
+  color: var(--accent-orange) !important;
+}
+
+.service-preview__desc {
+  color: var(--text-body) !important;
+}
+
+/* Skill Tags */
+.service-preview__tag {
+  background: var(--bg-secondary) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-body) !important;
+}
+
+.service-preview__tag:hover {
+  border-color: var(--accent-blue) !important;
+  color: var(--accent-blue) !important;
+  background: var(--surface-elevated) !important;
+}
+
+/* Additional Skills 5 Cards */
+.service-preview__skill-card {
+  background: var(--bg-secondary) !important;
+  border: 1px solid var(--border-subtle) !important;
+}
+
+.service-preview__skill-card:hover {
+  background: var(--surface-elevated) !important;
+  border-color: rgba(59, 130, 246, 0.4) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35) !important;
+}
+
+.service-preview__skill-tag-num {
+  color: var(--accent-orange) !important;
+}
+
+.service-preview__skill-tag-title {
+  color: var(--text-primary) !important;
+}
+
+.service-preview__skill-tag-desc {
+  color: var(--text-secondary) !important;
+}
+
+/* Right Service List */
+.services-interactive__eyebrow {
+  color: var(--accent-orange) !important;
+}
+
+.services-interactive__heading {
+  color: var(--text-primary) !important;
+}
+
+.services-interactive__heading-dot {
+  color: var(--accent-orange) !important;
+}
+
+.services-list {
+  border-top-color: var(--border-subtle) !important;
+}
+
+.service-row {
+  border-bottom-color: var(--border-subtle) !important;
+  background: transparent !important;
+}
+
+.service-row__num {
+  color: var(--text-muted) !important;
+}
+
+.service-row__title {
+  color: var(--text-secondary) !important;
+}
+
+.service-row__indicator {
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  color: var(--text-secondary) !important;
+  background: transparent !important;
+}
+
+.service-row:hover {
+  background: rgba(19, 31, 50, 0.55) !important;
+}
+
+.service-row:hover .service-row__num {
+  color: var(--accent-orange) !important;
+}
+
+.service-row:hover .service-row__title {
+  color: var(--text-primary) !important;
+}
+
+.service-row:hover .service-row__indicator {
+  border-color: var(--accent-orange) !important;
+  color: var(--accent-orange) !important;
+}
+
+.service-row.is-active {
+  background: var(--surface-elevated) !important;
+  border-color: transparent !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
+}
+
+.service-row.is-active .service-row__num {
+  color: var(--accent-orange) !important;
+}
+
+.service-row.is-active .service-row__title {
+  color: var(--text-primary) !important;
+}
+
+.service-row.is-active .service-row__indicator {
+  background: var(--accent-orange) !important;
+  border-color: var(--accent-orange) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 8px 20px rgba(255, 112, 20, 0.4) !important;
+}
+
+/* -------------------------------------------------------------
+   7. Portfolio Section (.portfolio)
+   ------------------------------------------------------------- */
+.portfolio {
+  background-color: var(--bg-alt) !important;
+}
+
+.portfolio .section__title .sub-title {
+  color: var(--accent-orange) !important;
+}
+
+.portfolio .section__title .title {
+  color: var(--text-primary) !important;
+}
+
+/* Portfolio Category Nav Tabs */
+.portfolio__nav {
+  border-bottom: none !important;
+}
+
+.portfolio__nav .nav-link.active {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: var(--text-primary) !important;
+}
+
+.portfolio__nav .nav-link:hover {
+  color: var(--text-primary) !important;
+  border-color: var(--border-medium) !important;
+  background: var(--surface-elevated) !important;
+}
+
+.portfolio__nav .nav-link.active {
+  
+  border-color: var(--accent-blue) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 6px 18px rgba(59, 130, 246, 0.35) !important;
+}
+
+/* Project Cards */
+.portfolio__item {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: 20px !important;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+  transition: all 0.35s ease !important;
+}
+
+.portfolio__item:hover {
+  border-color: rgba(59, 130, 246, 0.4) !important;
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45) !important;
+}
+
+.portfolio__thumb img {
+  filter: none !important;
+}
+
+.portfolio__content {
+  background: var(--card-bg) !important;
+}
+
+.portfolio__content .title a {
+  color: var(--text-primary) !important;
+}
+
+.portfolio__content .title a:hover {
+  color: var(--accent-blue) !important;
+}
+
+.portfolio__content span {
+  color: var(--text-secondary) !important;
+}
+
+/* Slick Carousel Controls */
+.slick-arrow,
+.portfolio__arrow button {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border-medium) !important;
+  color: var(--text-primary) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3) !important;
+}
+
+.slick-arrow:hover,
+.portfolio__arrow button:hover {
+  background: var(--accent-blue) !important;
+  border-color: var(--accent-blue) !important;
+  color: #FFFFFF !important;
+}
+
+/* Graphic Showcase & Posters */
+.graphic-showcase {
+  background-color: var(--bg-alt) !important;
+}
+
+.gd-pill {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-secondary) !important;
+}
+
+.gd-pill:hover {
+  color: var(--text-primary) !important;
+  border-color: var(--border-medium) !important;
+}
+
+.gd-pill.active {
+  background: var(--accent-blue) !important;
+  border-color: var(--accent-blue) !important;
+  color: #FFFFFF !important;
+}
+
+.gd-card {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border-subtle) !important;
+}
+
+.aiv-card {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border-subtle) !important;
+}
+
+.aiv-play-btn {
+  background: rgba(11, 18, 32, 0.75) !important;
+  border: 1px solid var(--border-medium) !important;
+  color: #FFFFFF !important;
+}
+
+/* Lightbox Modal */
+.aiv-lightbox-container {
+  background: var(--bg-primary) !important;
+  border: 1px solid var(--border-medium) !important;
+}
+
+.aiv-lightbox-title {
+  color: var(--text-primary) !important;
+}
+
+.aiv-lightbox-desc {
+  color: var(--text-secondary) !important;
+}
+
+/* -------------------------------------------------------------
+   8. Design Process Section (.work__process)
+   ------------------------------------------------------------- */
+.work__process,
+.process__sticky-wrap {
+  background-color: var(--bg-primary) !important;
+}
+
+.process__tag-wrap .process__tag-text {
+  color: var(--accent-orange) !important;
+}
+
+.process__tag-line {
+  background-color: var(--accent-orange) !important;
+}
+
+.process__tag-dot {
+  background-color: var(--accent-orange) !important;
+}
+
+.process__title {
+  color: var(--text-primary) !important;
+}
+
+.process__title-dot {
+  color: var(--accent-orange) !important;
+}
+
+.process__subtitle {
+  color: var(--text-secondary) !important;
+}
+
+/* Timeline Track */
+.process__wave-path {
+  stroke: rgba(255, 255, 255, 0.1) !important;
+}
+
+.process__wave-path-active {
+  stroke: var(--accent-blue) !important;
+}
+
+.process__node-dot {
+  fill: var(--surface-elevated) !important;
+  stroke: rgba(255, 255, 255, 0.16) !important;
+}
+
+.process__progress-dot {
+  fill: var(--accent-blue) !important;
+}
+
+/* Process Steps & Numbers */
+.process__step-number {
+  color: var(--text-muted) !important;
+}
+
+.process__step.is-active .process__step-number {
+  color: var(--accent-orange) !important;
+  font-weight: 700;
+}
+
+/* Icon Circles */
+.process__icon-circle {
+  background: var(--surface-elevated) !important;
+  border: 1.5px solid var(--border-subtle) !important;
+  color: var(--text-secondary) !important;
+}
+
+.process__step.is-active .process__icon-circle {
+  background: var(--accent-orange) !important;
+  border-color: var(--accent-orange) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 6px 18px rgba(255, 112, 20, 0.4) !important;
+}
+
+.process__step.is-active .process__icon-circle svg {
+  color: #FFFFFF !important;
+  stroke: #FFFFFF !important;
+}
+
+/* Process Cards */
+.process__card {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border-subtle) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
+}
+
+.process__step.is-active .process__card {
+  border-color: rgba(59, 130, 246, 0.4) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45) !important;
+}
+
+.process__card-title {
+  color: var(--text-primary) !important;
+}
+
+.process__card-desc {
+  color: var(--text-body) !important;
+}
+
+.process__image-wrapper,
+.process__image-placeholder {
+  background: var(--bg-alt) !important;
+  border-color: var(--border-subtle) !important;
+}
+
+.placeholder-label {
+  color: var(--text-primary) !important;
+}
+
+.placeholder-hint {
+  color: var(--text-muted) !important;
+}
+
+.reveal-strip {
+  background: var(--card-bg) !important;
+}
+
+.process__scroll-indicator .scroll-mouse {
+  border-color: var(--text-muted) !important;
+}
+
+.process__scroll-indicator .scroll-text {
+  color: var(--text-muted) !important;
+}
+
+/* -------------------------------------------------------------
+   9. Skills & Tools Section (.skills-section)
+   ------------------------------------------------------------- */
+.skills-section {
+  background-color: var(--bg-alt) !important;
+}
+
+.skills-intro__eyebrow {
+  color: var(--accent-orange) !important;
+}
+
+.skills-intro__heading {
+  color: var(--text-primary) !important;
+}
+
+.skills-intro__heading-dot {
+  color: var(--accent-orange) !important;
+}
+
+.skills-intro__desc {
+  color: var(--text-body) !important;
+}
+
+/* Skill Cards */
+.skills-card {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border-subtle) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3) !important;
+}
+
+.skills-card:hover {
+  background: var(--surface-elevated) !important;
+  border-color: rgba(59, 130, 246, 0.35) !important;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45) !important;
+  transform: translateY(-4px);
+}
+
+.skills-card__title {
+  color: var(--text-primary) !important;
+}
+
+.skills-card__desc {
+  color: var(--text-secondary) !important;
+}
+
+/* Tool Badges */
+.skills-tool-badge {
+  background: var(--surface-elevated) !important;
+  border: 1px solid var(--border-subtle) !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25) !important;
+}
+
+.skills-tool-badge:hover {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  transform: translateY(-2px);
+}
+
+/* -------------------------------------------------------------
+   10. Experience & Certifications (about.html)
+   ------------------------------------------------------------- */
+.experience-area,
+.certifications-area {
+  background-color: var(--bg-primary) !important;
+}
+
+
+
+/* Experience Cards */
+.exp-card {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border-subtle) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
+}
+
+.exp-card:hover {
+  background: var(--surface-elevated) !important;
+  border-color: rgba(59, 130, 246, 0.35) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45) !important;
+}
+
+.exp-card__header {
+  border-bottom-color: var(--border-subtle) !important;
+}
+
+.exp-card__title {
+  color: var(--text-primary) !important;
+}
+
+.exp-card__company {
+  color: var(--text-secondary) !important;
+}
+
+.exp-card__text {
+  color: var(--text-body) !important;
+}
+
+.exp-card__date-badge {
+  background: var(--accent-orange-subtle) !important;
+  border: 1px solid rgba(255, 112, 20, 0.35) !important;
+  color: var(--accent-orange) !important;
+}
+
+/* Certificate Cards */
+.cert-card {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border-subtle) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
+}
+
+.cert-card:hover {
+  background: var(--surface-elevated) !important;
+  border-color: rgba(59, 130, 246, 0.35) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45) !important;
+}
+
+.cert-card__preview {
+  background-color: var(--bg-alt) !important;
+  border-color: var(--border-subtle) !important;
+}
+
+.cert-card__title {
+  color: var(--text-primary) !important;
+}
+
+.cert-card__meta,
+.cert-card__issuer {
+  color: var(--text-secondary) !important;
+}
+
+.cert-card__btn {
+  background: var(--accent-blue) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(59, 130, 246, 0.4) !important;
+}
+
+.cert-card__btn:hover {
+  background: var(--accent-blue-hover) !important;
+  color: #FFFFFF !important;
+}
+
+/* Certificate Modals */
+.cert-modal {
+  background: rgba(11, 18, 32, 0.88) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+}
+
+.cert-modal__card {
+  background-color: var(--card-bg) !important;
+  border: 1px solid var(--border-medium) !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6) !important;
+}
+
+.cert-modal__paper-frame {
+  background: var(--surface-elevated) !important;
+  border: 1px solid var(--border-subtle) !important;
+}
+
+.cert-detail__title {
+  color: var(--text-primary) !important;
+}
+
+.cert-detail__intro {
+  color: var(--text-body) !important;
+}
+
+.cert-detail__divider {
+  background: var(--border-subtle) !important;
+}
+
+.cert-detail__meta-val {
+  color: var(--text-primary) !important;
+}
+
+.cert-detail__meta-label {
+  color: var(--text-muted) !important;
+}
+
+.cert-modal__close {
+  background-color: var(--surface-elevated) !important;
+  border: 1px solid var(--border-medium) !important;
+  color: var(--text-body) !important;
+}
+
+.cert-modal__close:hover {
+  background-color: var(--accent-blue) !important;
+  color: #FFFFFF !important;
+  border-color: var(--accent-blue) !important;
+}
+
+/* -------------------------------------------------------------
+   11. Contact Section (.pcontact-cta-wrapper)
+   ------------------------------------------------------------- */
+.main-area, main {
+  background: var(--bg-primary) !important;
+  box-shadow: none !important;
+}
+
+.pcontact-cta-wrapper {
+  background-color: var(--bg-primary) !important;
+}
+
+.pcontact-cta-card {
+  background: var(--bg-secondary) !important;
+  border: 1px solid var(--border-subtle) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45) !important;
+}
+
+.pcontact-tagline {
+  color: var(--accent-orange) !important;
+}
+
+.pcontact-title {
+  color: var(--text-primary) !important;
+}
+
+.pcontact-title-dot {
+  color: var(--accent-orange) !important;
+}
+
+.pcontact-desc {
+  color: var(--text-body) !important;
+}
+
+/* Contact Feature Items in Dark Theme */
+body.dark-theme .pcontact-feature-icon,
+body.active-dark-mode .pcontact-feature-icon,
+.pcontact-feature-icon {
+  background: #18263A !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+  transition: all 0.25s ease !important;
+}
+
+body.dark-theme .pcontact-feature-icon svg,
+body.active-dark-mode .pcontact-feature-icon svg,
+.pcontact-feature-icon svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  color: #FFFFFF !important;
+  fill: currentColor !important;
+  stroke: none !important;
+  transition: transform 0.25s ease, color 0.25s ease !important;
+}
+
+body.dark-theme .pcontact-feature-icon i,
+body.active-dark-mode .pcontact-feature-icon i,
+.pcontact-feature-icon i {
+  color: #FFFFFF !important;
+  font-size: 16px;
+  display: inline-block;
+  line-height: 1;
+  transition: color 0.25s ease !important;
+}
+
+/* Contact Feature Hover State */
+body.dark-theme .pcontact-feature-item:hover .pcontact-feature-icon,
+body.active-dark-mode .pcontact-feature-item:hover .pcontact-feature-icon,
+.pcontact-feature-item:hover .pcontact-feature-icon {
+  background: #22354F !important;
+  border-color: #FCAF17 !important;
+  color: #FCAF17 !important;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 18px rgba(252, 175, 23, 0.3) !important;
+}
+
+body.dark-theme .pcontact-feature-item:hover .pcontact-feature-icon svg,
+body.active-dark-mode .pcontact-feature-item:hover .pcontact-feature-icon svg,
+.pcontact-feature-item:hover .pcontact-feature-icon svg {
+  color: #FCAF17 !important;
+  fill: currentColor !important;
+  stroke: none !important;
+}
+
+body.dark-theme .pcontact-feature-item:hover .pcontact-feature-icon i,
+body.active-dark-mode .pcontact-feature-item:hover .pcontact-feature-icon i,
+.pcontact-feature-item:hover .pcontact-feature-icon i {
+  color: #FCAF17 !important;
+}
+
+body.dark-theme .pcontact-feature-item:hover .pcontact-feature-title,
+body.active-dark-mode .pcontact-feature-item:hover .pcontact-feature-title,
+.pcontact-feature-item:hover .pcontact-feature-title {
+  color: #FCAF17 !important;
+}
+
+.pcontact-feature-title {
+  color: var(--text-primary) !important;
+}
+
+.pcontact-feature-desc {
+  color: var(--text-secondary) !important;
+}
+
+/* Contact Form Box (Right Column) */
+.pcontact-form-card {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border-subtle) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4) !important;
+}
+
+.pcontact-form-title {
+  color: var(--text-primary) !important;
+}
+
+.pcontact-form-subtitle {
+  color: var(--text-secondary) !important;
+}
+
+.pcontact-form-label {
+  color: var(--text-primary) !important;
+}
+
+/* Input Fields & Textarea */
+.pcontact-form-control {
+  background: var(--input-bg) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-primary) !important;
+  transition: all 0.25s ease !important;
+}
+
+.pcontact-form-control::placeholder {
+  color: var(--text-muted) !important;
+}
+
+.pcontact-form-control:focus {
+  border-color: var(--accent-blue) !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25) !important;
+  background: #0E1726 !important;
+}
+
+.pcontact-char-count {
+  color: var(--text-muted) !important;
+}
+
+/* Submit Button (Solid Filled Button in Dark Mode) */
+body.dark-theme .pcontact-submit-btn,
+body.active-dark-mode .pcontact-submit-btn,
+.pcontact-submit-btn {
+  background: #2563EB !important;
+  background-color: #2563EB !important;
+  color: #FFFFFF !important;
+  border: 1px solid #2563EB !important;
+  border-radius: 9999px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  box-shadow: 0 6px 24px rgba(37, 99, 235, 0.42) !important;
+  transition: all 0.25s ease !important;
+}
+
+body.dark-theme .pcontact-submit-btn:hover,
+body.active-dark-mode .pcontact-submit-btn:hover,
+.pcontact-submit-btn:hover {
+  background: #1D4ED8 !important;
+  background-color: #1D4ED8 !important;
+  border-color: #1D4ED8 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 10px 32px rgba(37, 99, 235, 0.6) !important;
+  transform: translateY(-2px) !important;
+}
+
+body.dark-theme .pcontact-submit-btn span,
+body.active-dark-mode .pcontact-submit-btn span,
+.pcontact-submit-btn span,
+body.dark-theme .pcontact-submit-btn .pcontact-btn-arrow,
+body.active-dark-mode .pcontact-submit-btn .pcontact-btn-arrow,
+.pcontact-submit-btn .pcontact-btn-arrow {
+  color: #FFFFFF !important;
+}
+
+/* -------------------------------------------------------------
+   12. Final Thank You Section (.thank-you-section)
+   ------------------------------------------------------------- */
+.thank-you-section {
+  background-color: var(--bg-deep) !important;
+}
+
+.thank-you__heading {
+  color: var(--text-primary) !important;
+}
+
+.thank-you__highlight {
+  color: var(--accent-orange) !important;
+}
+
+.thank-you__tagline,
+.thank-you__role {
+  color: var(--text-secondary) !important;
+}
+
+/* Speech Bubble */
+.thank-you__speech-bubble {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border-medium) !important;
+  color: var(--text-primary) !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4) !important;
+}
+
+.thank-you__speech-bubble::after {
+  border-top-color: var(--card-bg) !important;
+}
+
+/* Contact Pills */
+.thank-you__contact-pill,
+.thank-you__contact-card {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-body) !important;
+}
+
+.thank-you__contact-pill:hover {
+  border-color: var(--accent-blue) !important;
+  color: var(--accent-blue) !important;
+}
+
+/* -------------------------------------------------------------
+   13. Footer (.parallax-footer)
+   ------------------------------------------------------------- */
+.parallax-footer {
+  background-color: var(--bg-deep) !important;
+  border-top: 1px solid var(--border-subtle) !important;
+}
+
+.parallax-footer .fw-title .title,
+.parallax-footer .footer__title {
+  color: var(--text-primary) !important;
+}
+
+.parallax-footer .fw-title .sub-title {
+  color: var(--accent-orange) !important;
+}
+
+.parallax-footer p,
+.parallax-footer a {
+  color: var(--text-secondary) !important;
+}
+
+.parallax-footer a:hover {
+  color: var(--accent-orange) !important;
+}
+
+.parallax-footer .copyright__text p {
+  color: var(--text-muted) !important;
+}
+
+.parallax-footer .copyright__wrap {
+  border-top-color: var(--border-subtle) !important;
+}
+
+.parallax-footer .footer__social a {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-body) !important;
+}
+
+.parallax-footer .footer__social a:hover {
+  background: var(--accent-blue) !important;
+  border-color: var(--accent-blue) !important;
+  color: #FFFFFF !important;
+  transform: translateY(-2px);
+}
+
+/* -------------------------------------------------------------
+   14. Custom Cursor
+   ------------------------------------------------------------- */
+#custom-cursor-ring,
+.custom-cursor-ring {
+  border: 1.5px solid rgba(59, 130, 246, 0.85) !important;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.4), inset 0 0 6px rgba(59, 130, 246, 0.25) !important;
+}
+
+#custom-cursor-point,
+.custom-cursor-point {
+  background: var(--accent-orange) !important;
+  box-shadow: 0 0 8px rgba(255, 112, 20, 0.6) !important;
+}
+
+/* -------------------------------------------------------------
+   15. Reduced Motion Compliance
+   ------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

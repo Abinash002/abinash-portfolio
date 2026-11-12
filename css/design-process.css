@@ -1,0 +1,814 @@
+/*=============================================================
+  DESIGN PROCESS SECTION - PREMIUM 5-STAGE PIPELINE
+  Features:
+  - 5-column horizontal pipeline on desktop, vertical progression on mobile
+  - Smooth scroll-linked timeline with glowing active gradient wave
+  - Active step highlighting with signature brand color borders
+  - Clean modular image placeholder slots labeled "Replace Image 01" to "05"
+  - Framer-style 20-strip image reveal animation for each image area
+  - Bottom "SCROLL TO EXPLORE" mouse indicator
+  - 100% responsive and dark-mode compatible
+=============================================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+/* Main Section Wrapper */
+.work__process {
+  position: relative;
+  background: #ffffff;
+  padding: 130px 0 0;
+  overflow: visible;
+}
+
+/* Remove legacy background pseudo */
+.work__process::before {
+  display: none !important;
+}
+
+/* -------------------------------------------------------------
+   Sticky Scroll Track for Smooth Timeline Progression
+   - Desktop: 250vh scroll track with sticky 100vh viewport container
+   - Allows natural scroll progression through Discover -> Deliver
+   ------------------------------------------------------------- */
+.process__scroll-track {
+  position: relative;
+  height: 250vh;
+}
+
+.process__sticky-wrap {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  overflow: hidden;
+  z-index: 10;
+}
+
+/* -------------------------------------------------------------
+   Header Styling
+   ------------------------------------------------------------- */
+.process__header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 35px;
+  position: relative;
+  z-index: 2;
+}
+
+/* 02 — WORKING PROCESS Tag */
+.process__tag-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.process__tag-line {
+  display: inline-block;
+  width: 28px;
+  height: 2px;
+  background: #FF9400;
+  border-radius: 2px;
+}
+
+.process__tag-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  background: #FF9400;
+  border-radius: 50%;
+}
+
+.process__tag-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: #FF9400;
+  line-height: 1;
+}
+
+/* Main Heading */
+.process__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 46px;
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: #111827;
+  margin: 0 0 12px;
+}
+
+.process__title-dot {
+  color: #FF9400;
+  display: inline-block;
+}
+
+/* Subtitle */
+.process__subtitle {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15.5px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #64748B;
+  margin: 0 auto;
+  max-width: 580px;
+}
+
+/* -------------------------------------------------------------
+   Pipeline Grid & Wave Track
+   ------------------------------------------------------------- */
+.process__pipeline-wrap {
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+  z-index: 1;
+}
+
+/* Connecting Dashed/Straight Wave Track SVG */
+.process__connecting-wave {
+  position: absolute;
+  top: 42px; /* Aligns line Y=25 through vertical center of icon circles */
+  left: 0;
+  width: 100%;
+  height: 50px;
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+}
+
+.process__wave-path {
+  fill: none;
+  stroke: #E2E8F0;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.process__node-dot {
+  transition: fill 0.3s ease;
+}
+
+/* Active Straight Horizontal Progress Segments (Monochrome Dark Navy) */
+.process__wave-path-active {
+  fill: none;
+  stroke: #0F172A;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+/* Smooth Progress Dot moving along the straight horizontal line */
+.process__progress-dot {
+  filter: drop-shadow(0 2px 4px rgba(15, 23, 42, 0.15));
+  transition: fill 0.3s ease, color 0.3s ease;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* 5-Column Grid */
+.process__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Individual Stage Column */
+.process__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* -------------------------------------------------------------
+   Step Number Header
+   ------------------------------------------------------------- */
+.process__step-number {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  color: #64748B;
+  margin-bottom: 14px;
+  display: inline-block;
+  transition: color 0.3s ease, transform 0.3s ease, font-weight 0.3s ease;
+}
+
+.process__step.is-active .process__step-number {
+  color: #0F172A;
+  font-weight: 700;
+  transform: scale(1.06);
+}
+
+/* -------------------------------------------------------------
+   Circular Icon Badge
+   ------------------------------------------------------------- */
+.process__icon-box {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+/* Main Circle Badge */
+.process__icon-circle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #E2E8F0;
+  color: #0F172A;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: background 0.35s ease, border-color 0.35s ease, color 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
+  cursor: pointer;
+}
+
+.process__icon-circle svg {
+  width: 32px;
+  height: 32px;
+  color: inherit;
+  stroke: currentColor;
+  transition: transform 0.35s ease;
+}
+
+.process__step:hover .process__icon-circle {
+  transform: translateY(-4px);
+  border-color: #CBD5E1;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+}
+
+/* Active Icon Circle: Solid Dark Navy Background with Crisp White Icon */
+.process__step.is-active .process__icon-circle {
+  background: #0F172A !important;
+  border-color: #0F172A !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.22) !important;
+  transform: translateY(-4px) scale(1.05);
+}
+
+.process__step.is-active .process__icon-circle svg {
+  color: #FFFFFF !important;
+  stroke: #FFFFFF !important;
+  transform: scale(1.06);
+}
+
+/* -------------------------------------------------------------
+   Content Cards (Monochrome White Style)
+   ------------------------------------------------------------- */
+.process__card {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 28px 16px 20px;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+.process__step:hover .process__card {
+  transform: translateY(-4px);
+  border-color: #CBD5E1;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+}
+
+/* Stage Titles */
+.process__card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #0F172A;
+  margin: 0 0 10px;
+  letter-spacing: -0.01em;
+}
+
+/* Stage Descriptions */
+.process__card-desc {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #64748B;
+  margin: 0 0 20px;
+  font-weight: 400;
+  min-height: 56px;
+}
+
+/* =============================================================
+   ACTIVE STEP HIGHLIGHTS (Matches the reference image)
+   - Highlight active stage using dark navy icon and slightly stronger navy border
+   ============================================================= */
+.process__step.is-active .process__card {
+  border: 1.5px solid #0F172A !important;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08) !important;
+  transform: translateY(-6px);
+}
+
+/* =============================================================
+   MUTED (UPCOMING) & COMPLETED (PAST) STAGE STATES
+   ============================================================= */
+.process__step.is-muted {
+  opacity: 0.65;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.process__step.is-muted .process__icon-circle {
+  background: #ffffff !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02) !important;
+}
+
+.process__step.is-muted .process__icon-circle svg {
+  opacity: 0.6;
+}
+
+.process__step.is-muted .process__card {
+  border-color: #E2E8F0 !important;
+  box-shadow: none !important;
+}
+
+.process__step.is-completed {
+  opacity: 1;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.process__step.is-completed .process__icon-circle {
+  background: #ffffff;
+  border-color: #E2E8F0;
+  color: #0F172A;
+}
+
+.process__step.is-completed .process__card {
+  border-color: #E2E8F0;
+  opacity: 1;
+}
+
+/* -------------------------------------------------------------
+   IMAGE PLACEHOLDER AREA
+   - Clean, modular slot ready for future project screenshot drop-in
+   - Framer 20-strip reveal overlay on each container
+   ------------------------------------------------------------- */
+.process__image-slot {
+  width: 100%;
+  margin-top: auto;
+}
+
+.process__image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+/* When the user replaces the placeholder with their own <img> */
+.process__image-wrapper img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  display: block;
+  z-index: 1;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.process__step:hover .process__image-wrapper img,
+.process__step.is-active .process__image-wrapper img {
+  transform: scale(1.04);
+}
+
+/* Clean, modern placeholder with subtle gray dashed border */
+.process__image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 12px;
+  border: 1.5px dashed #CBD5E1;
+  border-radius: 10px;
+  background: #FFFFFF;
+  transition: background 0.3s ease, border-color 0.3s ease;
+  user-select: none;
+}
+
+.process__step:hover .process__image-placeholder,
+.process__step.is-active .process__image-placeholder {
+  border-color: #94A3B8;
+}
+
+.placeholder-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: transparent;
+  color: #94A3B8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  transition: transform 0.35s ease, color 0.35s ease;
+}
+
+.placeholder-icon svg {
+  stroke: #94A3B8;
+}
+
+.process__step:hover .placeholder-icon,
+.process__step.is-active .placeholder-icon {
+  transform: scale(1.06);
+  color: #64748B;
+}
+
+.process__step:hover .placeholder-icon svg,
+.process__step.is-active .placeholder-icon svg {
+  stroke: #64748B;
+}
+
+.placeholder-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #0F172A;
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+
+.placeholder-hint {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  color: #94A3B8;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+/* Overlay strip monochrome neutral styling */
+.reveal-strip {
+  background: #F1F5F9;
+}
+
+/* -------------------------------------------------------------
+   Scroll Indicator (Bottom Mouse Indicator)
+   ------------------------------------------------------------- */
+.process__scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 55px;
+  gap: 10px;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+.process__scroll-indicator:hover {
+  opacity: 1;
+}
+
+.scroll-mouse {
+  width: 22px;
+  height: 36px;
+  border: 2px solid #94A3B8;
+  border-radius: 12px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.scroll-wheel {
+  width: 3.5px;
+  height: 7px;
+  background: #FF9400;
+  border-radius: 3px;
+  position: absolute;
+  top: 6px;
+  animation: mouseWheelScroll 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes mouseWheelScroll {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.2;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #94A3B8;
+}
+
+/* -------------------------------------------------------------
+   Interactive Entrance Animation & Viewport Reveal
+   ------------------------------------------------------------- */
+.process__step {
+  opacity: 1;
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.js-has-observer .process__step {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+.js-has-observer .work__process.is-in-view .process__step {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.js-has-observer .work__process.is-in-view .process__step--1 { transition-delay: 0.1s; }
+.js-has-observer .work__process.is-in-view .process__step--2 { transition-delay: 0.22s; }
+.js-has-observer .work__process.is-in-view .process__step--3 { transition-delay: 0.34s; }
+.js-has-observer .work__process.is-in-view .process__step--4 { transition-delay: 0.46s; }
+.js-has-observer .work__process.is-in-view .process__step--5 { transition-delay: 0.58s; }
+
+.js-has-observer .process__connecting-wave {
+  opacity: 0;
+  transition: opacity 0.9s ease 0.3s;
+}
+
+.js-has-observer .work__process.is-in-view .process__connecting-wave {
+  opacity: 1;
+}
+
+/* -------------------------------------------------------------
+   Responsive Breakpoints
+   ------------------------------------------------------------- */
+/* Laptops & Medium Desktops (992px to 1199px) */
+@media (max-width: 1199.98px) {
+  .process__title {
+    font-size: 42px;
+  }
+  .process__grid {
+    gap: 12px;
+  }
+  .process__card {
+    padding: 22px 12px 18px;
+    min-height: 390px;
+  }
+  .process__card-title {
+    font-size: 20px;
+  }
+  .process__card-desc {
+    font-size: 12.5px;
+    min-height: 52px;
+  }
+  .process__image-wrapper {
+    height: 190px;
+  }
+  .process__icon-box {
+    width: 86px;
+    height: 86px;
+  }
+  .process__icon-circle {
+    width: 80px;
+    height: 80px;
+  }
+  .process__icon-circle svg {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+/* Laptops & Short Viewports */
+@media (min-width: 992px) and (max-height: 780px) {
+  .process__header {
+    margin-bottom: 20px;
+  }
+  .process__title {
+    font-size: 38px;
+    margin-bottom: 8px;
+  }
+  .process__card {
+    min-height: 350px;
+    padding: 18px 10px 14px;
+  }
+  .process__image-wrapper {
+    height: 160px;
+  }
+  .process__scroll-indicator {
+    margin-top: 15px;
+  }
+}
+
+/* Tablets & Mobile (Vertical progression flow) */
+@media (max-width: 991.98px) {
+  .work__process {
+    padding: 110px 0 90px !important;
+  }
+  .process__scroll-track {
+    height: auto !important;
+  }
+  .process__sticky-wrap {
+    position: relative !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    background: transparent !important;
+  }
+  .process__connecting-wave {
+    display: none !important;
+  }
+  .process__step.is-muted {
+    opacity: 0.75 !important;
+  }
+  .process__title {
+    font-size: 38px;
+  }
+
+  /* Vertical Timeline Flow on Mobile */
+  .process__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    max-width: 440px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .process__step {
+    width: 100%;
+  }
+
+  .process__card {
+    min-height: auto;
+    padding: 28px 20px 22px;
+  }
+
+  .process__image-wrapper {
+    height: 220px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .work__process {
+    padding: 100px 0 80px;
+  }
+  .process__header {
+    margin-bottom: 45px;
+  }
+  .process__title {
+    font-size: 32px;
+  }
+  .process__subtitle {
+    font-size: 14.5px;
+  }
+  .process__grid {
+    max-width: 360px;
+    gap: 30px;
+  }
+}
+
+/* -------------------------------------------------------------
+   Dark Mode Styles (.active-dark-mode)
+   ------------------------------------------------------------- */
+.active-dark-mode .work__process {
+  background: #11141D !important;
+}
+
+.active-dark-mode .process__title {
+  color: #F8FAFC !important;
+}
+
+.active-dark-mode .process__subtitle {
+  color: #94A3B8 !important;
+}
+
+.active-dark-mode .process__step-number {
+  color: #94A3B8;
+}
+
+.active-dark-mode .process__step.is-active .process__step-number {
+  color: #F8FAFC;
+}
+
+.active-dark-mode .process__wave-path {
+  stroke: #334155;
+}
+
+.active-dark-mode .process__node-dot {
+  fill: #475569;
+}
+
+.active-dark-mode .process__wave-path-active {
+  stroke: #93C5FD;
+}
+
+.active-dark-mode .process__progress-dot {
+  fill: #93C5FD !important;
+}
+
+.active-dark-mode .process__card-title {
+  color: #F8FAFC !important;
+}
+
+.active-dark-mode .process__card-desc {
+  color: #CBD5E1 !important;
+}
+
+/* Dark Mode Icon Circles */
+.active-dark-mode .process__icon-circle {
+  background: #1E293B !important;
+  border-color: #334155 !important;
+  color: #F8FAFC !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+.active-dark-mode .process__step.is-active .process__icon-circle {
+  background: #F8FAFC !important;
+  border-color: #F8FAFC !important;
+  color: #0F172A !important;
+  box-shadow: 0 4px 18px rgba(255, 255, 255, 0.2) !important;
+}
+
+.active-dark-mode .process__step.is-active .process__icon-circle svg {
+  color: #0F172A !important;
+  stroke: #0F172A !important;
+}
+
+/* Dark Mode Cards */
+.active-dark-mode .process__card {
+  background: #181C26 !important;
+  border-color: #334155 !important;
+}
+
+.active-dark-mode .process__step.is-active .process__card {
+  border-color: #93C5FD !important;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3) !important;
+}
+
+.active-dark-mode .process__image-wrapper {
+  background: #131720 !important;
+}
+
+.active-dark-mode .process__image-placeholder {
+  background: #131720 !important;
+  border-color: #334155 !important;
+}
+
+.active-dark-mode .placeholder-label {
+  color: #F1F5F9 !important;
+}
+
+.active-dark-mode .placeholder-hint {
+  color: #64748B !important;
+}
+
+.active-dark-mode .process__scroll-indicator .scroll-mouse {
+  border-color: #64748B;
+}
+
+.active-dark-mode .scroll-text {
+  color: #64748B;
+}
+
+.active-dark-mode .reveal-strip {
+  background: #242B38 !important;
+}
