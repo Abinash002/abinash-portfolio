@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 420" width="100%" height="100%">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap');
+      .cert-title { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; fill: #0D223D; }
+      .cert-sans { font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; }
+      .cert-muted { fill: #6B7E93; }
+      .cert-light { fill: #8E9EAF; }
+    </style>
+    <linearGradient id="curveGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EFF1FE" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#F8F9FE" stop-opacity="0.2"/>
+    </linearGradient>
+    <filter id="cardShadow3" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0D223D" flood-opacity="0.04"/>
+    </filter>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="320" height="420" rx="8" fill="#FFFFFF" stroke="#E6E0D8" stroke-width="1.2" filter="url(#cardShadow3)"/>
+
+  <!-- Delicate Organic Corner Curves (Subtle Soft Periwinkle Tint) -->
+  <path d="M 215 0 Q 290 28 320 128 L 320 0 Z" fill="url(#curveGrad3)"/>
+  <path d="M 235 0 Q 300 42 320 158" fill="none" stroke="#E2E4FA" stroke-width="1"/>
+  <path d="M 0 338 Q 40 372 75 420 L 0 420 Z" fill="url(#curveGrad3)"/>
+  <path d="M 0 308 Q 55 360 95 420" fill="none" stroke="#E2E4FA" stroke-width="1"/>
+
+  <!-- Tiny Restrained Accent Dots -->
+  <circle cx="270" cy="116" r="3.5" fill="#0056FB"/>
+  <circle cx="56" cy="354" r="3" fill="#0056FB"/>
+
+  <!-- Inner Hairline Border Frame -->
+  <rect x="14" y="14" width="292" height="392" rx="4" fill="none" stroke="#ECE6DC" stroke-width="0.8"/>
+
+  <!-- Top Monogram Brand Mark -->
+  <g transform="translate(160, 48)">
+    <path d="M -11 18 L 0 -10 L 11 18 H 6 L 3.5 11 H -3.5 L -6 18 Z M 0 1.5 L -2.4 8 H 2.4 Z" fill="#0D223D"/>
+  </g>
+
+  <!-- Certificate Heading -->
+  <text x="160" y="94" text-anchor="middle" class="cert-title" font-size="14" letter-spacing="2.2">CERTIFICATE</text>
+  <text x="160" y="108" text-anchor="middle" class="cert-sans" font-size="7" font-weight="600" fill="#6B7E93" letter-spacing="2">OF COMPLETION</text>
+
+  <!-- Certification Statement -->
+  <text x="160" y="138" text-anchor="middle" class="cert-sans cert-light" font-size="7.5">This certifies that</text>
+  <text x="160" y="165" text-anchor="middle" class="cert-title" font-size="17">Your Name</text>
+  <line x1="95" y1="175" x2="225" y2="175" stroke="#E2DDD5" stroke-width="0.75"/>
+
+  <text x="160" y="196" text-anchor="middle" class="cert-sans cert-light" font-size="7">has successfully completed the</text>
+  <text x="160" y="212" text-anchor="middle" class="cert-title" font-size="9.5">Web Design &amp; Prototyping</text>
+
+  <!-- Watermark Security Emblem -->
+  <circle cx="160" cy="265" r="20" fill="none" stroke="#F0EBE1" stroke-width="1"/>
+  <circle cx="160" cy="265" r="16" fill="none" stroke="#EAE5DC" stroke-width="0.75" stroke-dasharray="2 2"/>
+  <polygon points="160,253 163,261 172,261 165,266 167,275 160,270 153,275 155,266 148,261 157,261" fill="#F0EFF8"/>
+
+  <!-- Signature Block (Left) -->
+  <g transform="translate(62, 325)">
+    <!-- Realistic Cursive Signature -->
+    <path d="M 5 -2 C 13 -15, 21 -12, 28 4 C 33 10, 39 -4, 47 1 C 53 4, 58 -5, 67 2" fill="none" stroke="#0D223D" stroke-width="1.3" stroke-linecap="round"/>
+    <line x1="0" y1="10" x2="72" y2="10" stroke="#0D223D" stroke-width="0.75"/>
+    <text x="36" y="22" text-anchor="middle" class="cert-sans" font-size="6" font-weight="600" fill="#7C8F9F" letter-spacing="1">SIGNATURE</text>
+  </g>
+
+  <!-- Date Block (Right) -->
+  <g transform="translate(196, 325)">
+    <text x="31" y="4" text-anchor="middle" class="cert-sans" font-size="7.5" font-weight="600" fill="#0D223D">MM YYYY</text>
+    <line x1="0" y1="10" x2="62" y2="10" stroke="#0D223D" stroke-width="0.75"/>
+    <text x="31" y="22" text-anchor="middle" class="cert-sans" font-size="6" font-weight="600" fill="#7C8F9F" letter-spacing="1">DATE</text>
+  </g>
+</svg>
